@@ -1,8 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+	<context:annotation-config></context:annotation-config>
+
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+
+		<property name="driverClassName"
+			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+		<property name="jdbcUrl"
+			value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>
+		<property name="username" value="nderp"></property>
+		<property name="password" value="1234"></property>
+
+	</bean>
+
+	<!-- hikari config 에 따른 datasource로 전달 -->
+	<!-- HikariCP configuration -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+
+	<!-- mybatis를 쓰려면 sqlSessionFactory 필요~ -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<!-- 어노테이션을 추가하면 트랜잭션을 관리함 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<tx:annotation-driven />
+
+<!-- org.nderp.mapper에서 호출하는 메서드는 다 마이바티스 관련으로 스프링컨테이너에서 고려함-->
+	<mybatis-spring:scan
+		base-package="org.nderp.mapper" />
+
+<!-- 비즈니스계층의 인터페이스와 구현클래스를 빈으로 인식하기위해 org.nderp.service 패키지 스캔하도록 추가 -->
+	<context:component-scan
+		base-package="org.nderp.service"></context:component-scan>
+	<context:component-scan
+		base-package="org.nderp.aop"></context:component-scan>
 		
+	<context:component-scan
+    base-package="org.nderp.task"></context:component-scan>
+		
+
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+	<task:annotation-driven />
 </beans>
