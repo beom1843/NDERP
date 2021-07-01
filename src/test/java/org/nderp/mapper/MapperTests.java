@@ -2,7 +2,7 @@ package org.nderp.mapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.nderp.mapper.TimeMapper;
+//import org.nderp.mapper.TimeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -15,13 +15,22 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class MapperTests {
 
+//	@Setter(onMethod_=@Autowired)
+//	private TimeMapper timeMapper;
+
 	@Setter(onMethod_=@Autowired)
-	private TimeMapper timeMapper;
+	private StaffInfoMapper mapper;
+	
+//	@Test
+//	public void testGetTime(){
+//		log.info(timeMapper.getClass().getName());
+//		log.info(timeMapper.getTime());
+//	}
 	
 	@Test
-	public void testGetTime(){
-		log.info(timeMapper.getClass().getName());
-		log.info(timeMapper.getTime());
+	public void testGetDept(){
+		log.info(mapper.getDept());
 	}
+	
 	
 }
