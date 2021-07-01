@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.nderp.dto.codeDTO;
 
-public interface StaffInfoMapper {
+public interface CodeMapper {
 	public List<codeDTO> getDept();
 	public List<codeDTO> getSchool();
 	public List<codeDTO> getSkill();

@@ -19,7 +19,7 @@ public class MapperTests {
 //	private TimeMapper timeMapper;
 
 	@Setter(onMethod_=@Autowired)
-	private StaffInfoMapper mapper;
+	private CodeMapper mapper;
 	
 //	@Test
 //	public void testGetTime(){

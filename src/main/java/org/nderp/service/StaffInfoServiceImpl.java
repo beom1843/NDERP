@@ -3,11 +3,11 @@ package org.nderp.service;
 import java.util.List;
 
 import org.nderp.dto.codeDTO;
-import org.nderp.mapper.StaffInfoMapper;
+import org.nderp.mapper.CodeMapper;
 
 public class StaffInfoServiceImpl implements StaffInfoService {
 
-	private StaffInfoMapper mapper;
+	private CodeMapper mapper;
 	
 	@Override
 	public List<codeDTO> getDept() {
