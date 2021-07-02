@@ -52,7 +52,7 @@ var staffInfoService=(function(){
 		});
 	}//getSchool 함수 끝
 	
-	return{/*getCode:getCode*/
+	return{
 		getDept:getDept,
 		getSkill:getSkill,
 		getSchool:getSchool

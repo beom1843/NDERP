@@ -4,26 +4,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>**사원정보 등록**</title>
+	<title>**사원정보 등록**</title>
+	
 	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 	
 	<!-- StaffInfo.js -->
 	<script type="text/javascript" src="/resources/js/StaffInfo.js"></script>
-<style>
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
 
-th, td {
-	padding: 5px;
-}
-th{
-	text-align: center;
-
-}
-</style>
+	<style>
+	table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	
+	th, td {
+		padding: 5px;
+	}
+	th{
+		text-align: center;
+	
+	}
+	</style>
 </head>
 <body>
 
@@ -80,16 +82,16 @@ th{
 		getCode();
 		function getCode(){
 		staffInfoService.getDept(function(deptList){
-			var str="";
+			var str = "";
 			if(list == null || deptList.length ==0){
 			}
-			str+="<select id='dept_code'>";
+			str += "<select id='dept_code'>";
 		for(var i=0, len=deptList.length||0;i<len;i++){
 			console.log(deptList.department_name);
-			str+="<option value='"+deptList.department_code+"'>"+deptList.department_name+"</option>";
+			str += "<option value='"+deptList.department_code+"'>"+deptList.department_name+"</option>";
 		}
-		str+="</select>";
-		alert(str);
+		str += "</select>";
+		console.log(str);
 		DeptDropdown.html(str);
 		
 		});
