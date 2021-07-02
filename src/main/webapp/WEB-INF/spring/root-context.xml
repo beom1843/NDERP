@@ -49,24 +49,10 @@
 	<tx:annotation-driven />
 
 <!-- org.nderp.mapper에서 호출하는 메서드는 다 마이바티스 관련으로 스프링컨테이너에서 고려함-->
-	<mybatis-spring:scan
+<mybatis-spring:scan
 		base-package="org.nderp.mapper" />
 
-<!-- 비즈니스계층의 인터페이스와 구현클래스를 빈으로 인식하기위해 org.nderp.service 패키지 스캔하도록 추가 -->
-<!-- 	<context:component-scan
-		base-package="org.nderp.service"></context:component-scan>
-	<context:component-scan
-		base-package="org.nderp.aop"></context:component-scan>
-	
-	<context:component-scan
-   		base-package="org.nderp.dto"></context:component-scan>  		
-	
-  	<context:component-scan
-   		base-package="org.nderp.domain"></context:component-scan>  			
-		
-	<context:component-scan
-   		base-package="org.nderp.task"></context:component-scan> -->
-		
+<!-- 비즈니스계층의 인터페이스와 구현클래스를 빈으로 인식하기위해 org.nderp. 이하의 패키지 스캔하도록 추가 -->
 	<context:component-scan
  	 	base-package="org.nderp.*"></context:component-scan>
  	 	
@@ -75,4 +61,5 @@
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 	<task:annotation-driven />
+	
 </beans>
