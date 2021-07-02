@@ -1,7 +1,6 @@
 package org.nderp.controller;
 
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.nderp.domain.CodeDAO;
@@ -11,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
@@ -25,13 +23,40 @@ public class StaffInfoController {
 
 	private StaffInfoService service;
 
-	@GetMapping(value = "/code",
+//	@GetMapping(value = "/code",
+//			produces={
+//					MediaType.APPLICATION_XML_VALUE,
+//					MediaType.APPLICATION_JSON_UTF8_VALUE})
+//	public ResponseEntity<List<CodeDAO>> getCode(){
+//		log.info("-------------Controller_GetCode------------");
+//		return new ResponseEntity<List<CodeDAO>>(service.getCode(),HttpStatus.OK);
+//	}
+	
+	@GetMapping(value = "/codeDept",
 			produces={
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<CodeDAO>> getCode(){
-		log.info("-------------Controller_GetCode------------");
-		return new ResponseEntity<List<CodeDAO>>(service.getCode(),HttpStatus.OK);
+	public ResponseEntity<List<CodeDAO>> getDept(){
+		log.info("-------------Controller_GetDept------------");
+		return new ResponseEntity<List<CodeDAO>>(service.getDept(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/codeSkill",
+			produces={
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<CodeDAO>> getSkill(){
+		log.info("-------------Controller_GetSkill------------");
+		return new ResponseEntity<List<CodeDAO>>(service.getSkill(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/codeSchool",
+			produces={
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<CodeDAO>> getSchool(){
+		log.info("-------------Controller_GetSchool------------");
+		return new ResponseEntity<List<CodeDAO>>(service.getSchool(),HttpStatus.OK);
 	}
 	
 

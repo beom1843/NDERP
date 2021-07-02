@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>**사원정보 등록**</title>
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
-	<!-- Portfolio.js -->
+	<!-- StaffInfo.js -->
 	<script type="text/javascript" src="/resources/js/StaffInfo.js"></script>
 <style>
 table, th, td {
@@ -39,25 +39,27 @@ th{
 			<td>주민번호 빈칸</td>
 			<th>부서</th>
 			<td>
-			<select id="derpartment_code" >
-					<option value="크롬">크롬</option>
-					<option value="사파리">사파리</option>
-					<option value="엣지">엣지</option>
-					<option value="인터넷익스플로러">인터넷익스플로러</option>
-					<option value="파이어폭스">파이어폭스</option>
-					<option value="오페라">오페라</option>
-			</select>
+				<div class="dept_dropdown">
+					<select id="dept_code" >
+							<option value="SI">SI사업부</option>
+					</select>
+				</div>
 			</td>
 		</tr>
 
 		<tr>
 			<th>학력</th>
-			<td></td>
+			<td>
+				<div class="education_radio">	
+					<input type="radio" name="education" value="highSchool" />고졸
+					<input type="radio" name="education" value="college" />일반대졸
+				</div>
+			</td>
 			<th>기술</th>
 			<td colspan="3">
-				<input type="checkbox">java
-				<input type="checkbox">jsp
-				<input type="checkbox">asp
+				<div class="skill_checkbox">
+					<input type="checkbox">java
+				</div>
 			</td>
 		</tr>
 
@@ -66,5 +68,38 @@ th{
 			<td colspan="5"></td>
 		</tr>
 	</table>
+	
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		console.log("js 작동");
+		var DeptDropdown = $(".dept_dropdown");
+		var EduRadio = $(".education_radio");
+		var SkillChk=$(".skill_checkbox");
+		
+		getCode();
+		function getCode(){
+		staffInfoService.getDept(function(deptList){
+			var str="";
+			if(list == null || deptList.length ==0){
+			}
+			str+="<select id='dept_code'>";
+		for(var i=0, len=deptList.length||0;i<len;i++){
+			console.log(deptList.department_name);
+			str+="<option value='"+deptList.department_code+"'>"+deptList.department_name+"</option>";
+		}
+		str+="</select>";
+		alert(str);
+		DeptDropdown.html(str);
+		
+		});
+
+		}
+
+	});
+	
+	
+	
+	</script>
 </body>
 </html>
