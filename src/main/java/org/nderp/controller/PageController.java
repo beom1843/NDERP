@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value="/views/*", 
+@RequestMapping(value="/*", 
 produces=MediaType.TEXT_HTML_VALUE)
 public class PageController {
 
