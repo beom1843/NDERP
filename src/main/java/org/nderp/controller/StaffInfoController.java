@@ -23,7 +23,15 @@ public class StaffInfoController {
 
 	private StaffInfoService service;
 
-
+	@GetMapping(value = "/codeDept",
+			produces={
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<CodeDAO>> getDept(){
+		log.info("-------------Controller_GetList------------");
+		
+		return new ResponseEntity<List<CodeDAO>>(service.getDept(),HttpStatus.OK);
+	}
 	
 
 

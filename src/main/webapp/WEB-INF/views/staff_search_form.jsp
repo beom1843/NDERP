@@ -24,7 +24,7 @@
 			<th>이름</th>
 			<td><input type="text" id="name" name="name"></td>
 			<th>주민번호</th>
-			<td>주민번호 빈칸</td>
+			<td><input type="text" id="name" name="name"> - <input type="password" id="name" name="name"></td>
 			<th>부서</th>
 			<td>
 				<div class="dept_dropdown">
