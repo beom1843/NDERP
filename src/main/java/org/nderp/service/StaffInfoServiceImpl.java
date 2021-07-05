@@ -1,6 +1,6 @@
 package org.nderp.service;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 //import java.util.ArrayList;
 import java.util.List;
 
@@ -21,28 +21,6 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 	private CodeMapper mapper;
 	private StaffMapper staffMapper;
 
-//	@Override
-//	public List<CodeDAO> getCode() {
-//		List<CodeDAO> deptCode = mapper.getDept();
-//		List<CodeDAO> schoolCode = mapper.getSchool();
-//		List<CodeDAO> skillCode = mapper.getSkill();
-//		
-//		List<CodeDAO> totalCode = new ArrayList<CodeDAO>();
-//		for(CodeDAO codeDao:deptCode){
-//			codeDao.setCodeDiv(0);
-//			totalCode.add(codeDao);
-//		}
-//		for(CodeDAO codeDao:schoolCode){
-//			codeDao.setCodeDiv(1);
-//			totalCode.add(codeDao);
-//		}
-//		for(CodeDAO codeDao:skillCode){
-//			codeDao.setCodeDiv(2);
-//			totalCode.add(codeDao);
-//		}
-//		
-//		return totalCode;
-//	}
 	
 	@Override
 	public List<CodeDAO> getDept() {
@@ -65,11 +43,10 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 	
 	@Override
 	public int insertStaff(Staff staff) {
-		log.info("-------------insertService-------");
 		int[] skillList = staff.getSkill_list();
-		log.info(skillList);
 		int re = staffMapper.insert(staff);
 		
+		log.info(skillList);
 		for(int skill_code:skillList){
 			log.info(skill_code);
 			staffMapper.insertSkill(skill_code);
@@ -80,14 +57,32 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 
 	@Override
 	public int deleteStaff(int staffNo) {
-	
-		return (staffMapper.delete(staffNo));
+		int re = staffMapper.delete(staffNo);
+		re += staffMapper.deleteSkill(staffNo);
+		return re;
 	}
 
 	@Override
 	public int updateStaff(Staff staff) {
+		
+		
 
-		return (staffMapper.update(staff));
+		int[] skillList = staff.getSkill_list();
+		
+		int staff_no = staff.getStaff_no();
+		
+		staffMapper.deleteSkill(staff_no);
+		log.info(staff_no);
+		log.info(skillList);
+		for(int skill_code:skillList){
+			HashMap<String,Integer> staff_skill = new HashMap<String,Integer>();
+			staff_skill.put("skill_code", skill_code);
+			staff_skill.put("staff_no", staff_no);
+			staffMapper.updateSkill(staff_skill);
+		}
+		
+		int re = staffMapper.update(staff);
+		return re;
 	}
 	
 	

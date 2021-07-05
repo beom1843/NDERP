@@ -24,6 +24,11 @@
 			where staff_no = #{staff_no}
 	</delete>
 	
+	<delete id="deleteSkill">
+		delete from staff_skill
+			where staff_no = #{staff_no}
+	</delete>
+	
 	<update id="update">
 		update staff
 			set staff_name = #{staff_name},
@@ -33,4 +38,11 @@
 				graduate_day = #{graduate_day}
 				where staff_no = #{staff_no}
 	</update>
+	
+	<insert id="updateSkill" parameterType="HashMap">
+		insert into staff_skill
+			values(staff_skill_seq.nextval,
+			#{staff_no}, 
+			#{skill_code})
+	</insert>
 </mapper>
