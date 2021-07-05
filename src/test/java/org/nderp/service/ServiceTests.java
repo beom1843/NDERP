@@ -19,14 +19,14 @@ public class ServiceTests {
 	@Setter(onMethod_={@Autowired})
 	private StaffInfoService service;
 	
-//	@Test
-//	public void testService(){
-//		log.info(service.getCode());
-//	}
-	
 	@Test
-	public void testDelete(){
-		log.info(service.deleteStaff(2));
+	public void testService(){
+		log.info(service.getDept());
 	}
+	
+//	@Test
+//	public void testDelete(){
+//		log.info(service.deleteStaff(2));
+//	}
 	
 }

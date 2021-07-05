@@ -7,6 +7,52 @@
 <title>**사원정보 수정,삭제**</title>
 </head>
 <body>
+	<table style="width: 100%">
+		<tr>
+			<th colspan="6">사원 정보 등록</th>
+		</tr>
+
+		<tr>
+			<th>이름</th>
+			<td><input type="text" id="name" name="name"></td>
+			<th>주민번호</th>
+			<td>주민번호 빈칸</td>
+			<th>부서</th>
+			<td>
+				<c:forEach items = "${codeDept}" var = "dept">
+				<div class="dept_dropdown">
+				
+					<select id="dept_code" >
+							<option value="${dept.department_code}">
+								<c:out value="${dept.department_name}"/>
+							</option>
+					</select>
+				</div>
+				</c:forEach>
+			</td>
+		</tr>
+
+		<tr>
+			<th>학력</th>
+			<td>
+				<div class="education_radio">	
+					<input type="radio" name="education" value="highSchool" />고졸
+					<input type="radio" name="education" value="college" />일반대졸
+				</div>
+			</td>
+			<th>기술</th>
+			<td colspan="3">
+				<div class="skill_checkbox">
+					<input type="checkbox">java
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<th>졸업일</th>
+			<td colspan="5"></td>
+		</tr>
+	</table>
 
 </body>
 </html>
