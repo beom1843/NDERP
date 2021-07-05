@@ -22,17 +22,35 @@ import lombok.extern.log4j.Log4j;
 public class StaffInfoController {
 
 	private StaffInfoService service;
-
+//git 반영 안되나 ?
 	@GetMapping(value = "/codeDept",
 			produces={
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<CodeDAO>> getDept(){
-		log.info("-------------Controller_GetList------------");
+		log.info("-------------Controller_GetDept------------");
 		
 		return new ResponseEntity<List<CodeDAO>>(service.getDept(),HttpStatus.OK);
 	}
 	
-
+	@GetMapping(value = "/codeSchool",
+			produces={
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<CodeDAO>> getSchool(){
+		log.info("-------------Controller_GetSchool------------");
+		
+		return new ResponseEntity<List<CodeDAO>>(service.getSchool(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/codeSkill",
+			produces={
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<CodeDAO>> getSkill(){
+		log.info("-------------Controller_GetSkill------------");
+		
+		return new ResponseEntity<List<CodeDAO>>(service.getSkill(),HttpStatus.OK);
+	}
 
 }
