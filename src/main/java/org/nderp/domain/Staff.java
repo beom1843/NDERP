@@ -6,7 +6,7 @@ import lombok.Data;
 public class Staff {
 
 	private int staff_no;
-	private String name;
+	private String staff_name;
 	private String jumin_no;
 	private int school_code;
 	private int department_code;

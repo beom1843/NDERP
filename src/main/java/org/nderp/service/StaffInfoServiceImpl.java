@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.nderp.domain.CodeDAO;
+import org.nderp.domain.Staff;
 import org.nderp.mapper.CodeMapper;
+import org.nderp.mapper.StaffMapper;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +19,7 @@ import lombok.extern.log4j.Log4j;
 public class StaffInfoServiceImpl implements StaffInfoService {
 
 	private CodeMapper mapper;
+	private StaffMapper staffMapper;
 
 //	@Override
 //	public List<CodeDAO> getCode() {
@@ -57,6 +60,24 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 	public List<CodeDAO> getSkill() {
 	
 		return (mapper.getSkill());
+	}
+
+	@Override
+	public int insertStaff(Staff staff) {
+
+		return (staffMapper.insert(staff));
+	}
+
+	@Override
+	public int deleteStaff(int staffNo) {
+	
+		return (staffMapper.delete(staffNo));
+	}
+
+	@Override
+	public int updateStaff(Staff staff) {
+
+		return (staffMapper.update(staff));
 	}
 	
 	

@@ -24,5 +24,9 @@ public class ServiceTests {
 //		log.info(service.getCode());
 //	}
 	
+	@Test
+	public void testDelete(){
+		log.info(service.deleteStaff(2));
+	}
 	
 }

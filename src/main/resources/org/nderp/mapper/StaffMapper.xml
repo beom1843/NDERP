@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.nderp.mapper.StaffMapper">
+
+	<insert id="insert">
+		insert into staff
+			values(staff_seq.nextval,#{staff_name},
+			#{jumin_no},#{school_code},
+			#{department_code},#{graduate_day})
+	</insert>
+
+	<delete id="delete">
+		delete from staff
+			where staff_no = #{staff_no}
+	</delete>
+	
+	<update id="update">
+		update staff
+			set staff_name = #{staff_name},
+				jumin_no = #{jumin_no},
+				school_code = #{school_code},
+				department_code = #{department_code},
+				graduate_day = #{graduate_day}
+				where staff_no = #{staff_no}
+	</update>
+</mapper>

@@ -37,7 +37,7 @@ public class ControllerTests {
 	@Test
 	public void testGetCode() throws Exception{
 		log.info("-------controllerTests---------");
-		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/code")).andExpect(status().isOk()));
+		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/codeDept")).andExpect(status().isOk()));
 		
 	}
 	

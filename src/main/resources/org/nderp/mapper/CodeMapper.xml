@@ -17,4 +17,11 @@
 		select *
 			from CODE_SKILL
 	</select>
+	<insert id="insert">
+		insert into staff
+		values(staff_seq.nextval,#{staff_name},
+		#{jumin_no},#{school_code},
+		#{department_code},#{graduate_day})
+	
+	</insert>
 </mapper>
