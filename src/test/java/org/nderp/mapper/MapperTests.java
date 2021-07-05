@@ -64,5 +64,11 @@ public class MapperTests {
 //		log.info(staffMapper.update(staff));
 //	}
 	
-
+	@Test
+	public void testGet(){
+		int staff_no = 22;
+		
+		int[] skillArr = staffMapper.getSkill(staff_no);
+		
+	}
 }

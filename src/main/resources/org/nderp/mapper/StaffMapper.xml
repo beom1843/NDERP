@@ -45,4 +45,18 @@
 			#{staff_no}, 
 			#{skill_code})
 	</insert>
+	
+	<select id="get" resultType="org.nderp.domain.Staff">
+		select *
+			from staff
+			where staff_no = #{staff_no}
+	</select>
+	
+	<select id="getSkill" resultType="Integer">
+		select skill_code
+			from staff_skill
+			where staff_no = #{staff_no}
+			order by skill_code
+	</select>
+	
 </mapper>

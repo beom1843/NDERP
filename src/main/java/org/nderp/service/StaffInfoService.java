@@ -16,4 +16,5 @@ public interface StaffInfoService {
 	public int insertStaff(Staff staff);
 	public int deleteStaff(int staffNo);
 	public int updateStaff(Staff staff);
+	public Staff readStaff(int staffNo);
 }

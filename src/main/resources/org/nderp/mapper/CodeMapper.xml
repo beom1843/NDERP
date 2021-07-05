@@ -17,6 +17,7 @@
 		select *
 			from CODE_SKILL
 	</select>
+	
 	<insert id="insert">
 		insert into staff
 		values(staff_seq.nextval,#{staff_name},

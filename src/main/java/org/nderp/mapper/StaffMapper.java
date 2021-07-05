@@ -9,9 +9,10 @@ public interface StaffMapper {
 	public int insert(Staff staff);
 	public int delete(int staff_no);
 	public int update(Staff staff);
+	public Staff get(int staff_no);
 	
 	public int insertSkill(int skill_code);
 	public int deleteSkill(int staff_no);
 	public int updateSkill(HashMap<String,Integer> staff_skill);
-	
+	public int[] getSkill(int staff_no);
 }

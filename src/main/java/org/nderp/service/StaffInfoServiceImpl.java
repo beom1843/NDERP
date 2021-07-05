@@ -84,6 +84,14 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 		int re = staffMapper.update(staff);
 		return re;
 	}
+
+	@Override
+	public Staff readStaff(int staffNo) {
+		Staff staff = staffMapper.get(staffNo);
+		staff.setSkill_list(staffMapper.getSkill(staffNo));
+		
+		return staff;
+	}
 	
 	
 

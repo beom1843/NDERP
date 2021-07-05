@@ -30,23 +30,23 @@ public class ServiceTests {
 //		log.info(service.deleteStaff(10));
 //	}
 	
-	@Test
-	public void testupdate(){
-		
-		Staff staff = new Staff();
-		staff.setStaff_no(22);
-		staff.setDepartment_code(2);
-		staff.setGraduate_day("2016-07-18");
-		staff.setJumin_no("970118-183");
-		staff.setSchool_code(3);
-		int[] SL = {3,4,5};
-		staff.setSkill_list(SL);
-		staff.setStaff_name("조야코");
-		log.info(staff);
-		
-		service.updateStaff(staff);
-		
-	}
+//	@Test
+//	public void testupdate(){
+//		
+//		Staff staff = new Staff();
+//		staff.setStaff_no(22);
+//		staff.setDepartment_code(2);
+//		staff.setGraduate_day("2016-07-18");
+//		staff.setJumin_no("970118-183");
+//		staff.setSchool_code(3);
+//		int[] SL = {3,4,5};
+//		staff.setSkill_list(SL);
+//		staff.setStaff_name("조야코");
+//		log.info(staff);
+//		
+//		service.updateStaff(staff);
+//		
+//	}
 
 //	@Test
 //	public void testInsert(){
@@ -64,5 +64,11 @@ public class ServiceTests {
 //		service.insertStaff(staff);
 //		
 //	}
+	
+	@Test
+	public void testRead(){
+		int staffNo=22;
+		log.info(service.readStaff(staffNo));
+	}
 	
 }
