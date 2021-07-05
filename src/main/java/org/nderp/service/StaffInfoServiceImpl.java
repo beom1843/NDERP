@@ -1,7 +1,6 @@
 package org.nderp.service;
 
 import java.util.HashMap;
-//import java.util.ArrayList;
 import java.util.List;
 
 import org.nderp.domain.CodeDAO;
@@ -57,8 +56,8 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 
 	@Override
 	public int deleteStaff(int staffNo) {
-		int re = staffMapper.delete(staffNo);
-		re += staffMapper.deleteSkill(staffNo);
+		int re = staffMapper.deleteSkill(staffNo);
+		re += staffMapper.delete(staffNo);
 		return re;
 	}
 

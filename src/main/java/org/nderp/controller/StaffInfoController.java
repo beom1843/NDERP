@@ -9,6 +9,7 @@ import org.nderp.service.StaffInfoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -82,6 +83,18 @@ public class StaffInfoController {
 		log.info("-------------Controller_GetSkill------------");
 		
 		return new ResponseEntity<Staff>(service.readStaff(staff_no),HttpStatus.OK);
+	}
+	
+	@DeleteMapping(value = "/delete/{staff_no}",
+			produces = { MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> delete(@PathVariable("staff_no")int staff_no){
+		
+		log.info("remove:" +staff_no);
+		
+		
+		return service.deleteStaff(staff_no)==1
+				? new ResponseEntity<>("success",HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	
