@@ -63,8 +63,6 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 
 	@Override
 	public int updateStaff(Staff staff) {
-		
-		
 
 		int[] skillList = staff.getSkill_list();
 		
