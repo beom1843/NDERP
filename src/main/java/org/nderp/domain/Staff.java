@@ -11,5 +11,6 @@ public class Staff {
 	private int school_code;
 	private int department_code;
 	private String graduate_day;
+	private int[] skill_list;
 	
 }

@@ -71,16 +71,22 @@
 		</tr>
 	</table>
 	
+<button id="submit" value="등록">등록</button>
+<button id="reload" value="초기화">초기화</button>
+
+	
 	
 	<script>
+	
 		$(document).ready(function(){
+			
 		console.log("js 작동");
+		/* 코드 불러오기 */
 		var DeptDropdown = $(".dept_dropdown");
 		var EduRadio = $(".education_radio");
 		var SkillChk=$(".skill_checkbox");
 		
 		getCode();
-		
 		function getCode(){
 			
 			staffInfoService.getDept(
@@ -118,11 +124,10 @@
 						SkillChk.html(str);
 					})
 			
-			
-		}
+		}//getCode, 코드불러오기 끝
+		
 		
 		setDateBox();
-		
 		function setDateBox() {
 			var dt = new Date();
 			var year = "";
@@ -150,7 +155,10 @@
 				$(".day").append("<option value='" + i + "'>" + i + "</option>");
 			}
 
-		}
+		}//setDateBox 끝
+		
+		
+		
 	
 	}); 
 	

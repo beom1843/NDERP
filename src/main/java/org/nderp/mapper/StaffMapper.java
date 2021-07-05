@@ -7,4 +7,7 @@ public interface StaffMapper {
 	public int insert(Staff staff);
 	public int delete(int staff_no);
 	public int update(Staff staff);
+	
+	public int insertSkill(int skill_code);
+	
 }

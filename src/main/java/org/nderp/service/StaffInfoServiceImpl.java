@@ -62,10 +62,20 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 		return (mapper.getSkill());
 	}
 
+	
 	@Override
 	public int insertStaff(Staff staff) {
-
-		return (staffMapper.insert(staff));
+		log.info("-------------insertService-------");
+		int[] skillList = staff.getSkill_list();
+		log.info(skillList);
+		int re = staffMapper.insert(staff);
+		
+		for(int skill_code:skillList){
+			log.info(skill_code);
+			staffMapper.insertSkill(skill_code);
+		}
+		
+		return re;
 	}
 
 	@Override

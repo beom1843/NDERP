@@ -10,6 +10,14 @@
 			#{jumin_no},#{school_code},
 			#{department_code},#{graduate_day})
 	</insert>
+	
+	<insert id="insertSkill">
+		insert into staff_skill
+			values(staff_skill_seq.nextval,
+			(select 
+			max(staff_no) from staff), 
+			#{skill_code})
+	</insert>
 
 	<delete id="delete">
 		delete from staff

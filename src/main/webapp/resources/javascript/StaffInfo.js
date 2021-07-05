@@ -56,15 +56,33 @@ var staffInfoService=(function(){
 		});
 	}//getSchool 함수 끝
 	
-	function setDateBox(){
-		
-	}
+	function add(wrapper, callback, error){
+		console.log("wrapper..........");
+	$.ajax({
+		type: 'post',
+		url: '/new',
+		data: JSON.stringify(wrapper),
+		contentType: "application/json; charset=utf-8",
+		success: function(result, status, xhr){
+			if(callback){
+				callback(result);
+			}
+		},
+		error: function(xhr, status, er){
+		console.log("========add_if_error========")
+			if(error){
+				error(er);
+			}
+		}	
+		})
+	}/*add 함수 끝*/
 	
 	
 	return{
 		getDept:getDept,
 		getSkill:getSkill,
 		getSchool:getSchool,
+		add:add
 	}
 })
 ()
