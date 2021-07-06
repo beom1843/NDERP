@@ -62,12 +62,27 @@ var staffInfoService=(function(){
 		})
 	}/*add 함수 끝*/
 	
+	function get(param,callback, error){
+		var staff_no = param.staff_no;
+		$.getJSON("/get/"+staff_no+".json", 
+				function(data){
+			if(callback){
+				callback(data);
+			}
+		}).fail(function(xhr,status,err){
+			if(error){
+				error();
+			}
+		});
+	}
+	
 	
 	return{
 		getDept:getDept,
 		getSkill:getSkill,
 		getSchool:getSchool,
-		add:add
+		add:add,
+		get:get
 	}
 })
 ()

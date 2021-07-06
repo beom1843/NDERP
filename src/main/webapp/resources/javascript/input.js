@@ -27,6 +27,7 @@ $(document).ready(function(){
 			$("input[name='skillList']:checked").each(function(i){
 				s_List.push($(this).val());
 			})
+			
 			console.log("스킬"+s_List);
 			console.log("주민"+j);
 			console.log("학력"+sch_code);

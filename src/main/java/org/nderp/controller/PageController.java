@@ -18,7 +18,6 @@ import lombok.extern.log4j.Log4j;
 produces=MediaType.TEXT_HTML_VALUE)
 public class PageController {
 	
-	private StaffInfoService service;
 
 	@GetMapping("/staff_input_form")
 	public void input(){
@@ -32,7 +31,6 @@ public class PageController {
 	
 	@GetMapping("/staff_updel_form")
 	public void updel(int staff_no, Model model){
-
 		model.addAttribute("staff_no",staff_no);
 	}
 }
