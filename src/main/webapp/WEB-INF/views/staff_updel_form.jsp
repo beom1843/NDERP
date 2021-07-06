@@ -222,12 +222,6 @@
 					s_List.push($(this).val());
 				})
 				
-				console.log("스킬"+s_List);
-				console.log("주민"+j);
-				console.log("학력"+sch_code);
-				console.log("부서"+dpt_code);
-				console.log("졸업일"+g_day);
-				
 				staffInfoService.update({
 					staff_no:s_no,
 					staff_name:name,
@@ -240,8 +234,24 @@
 				function(result){
 					alert("RESULT:"+result)
 				});
-			}))
+			}))// update 버튼 클릭 이벤트
 			
+			$("#delete").on("click", (function(e){
+				e.preventDefault();
+				
+				
+				if(confirm("정말 삭제하시겠습니까?")){
+					console.log("삭제하겠다!");
+					console.log("번호"+s_no);
+					staffInfoService.remove({
+						staff_no:s_no
+					},
+					function(result){
+						alert(result)
+					})
+				}
+				
+			}))
 	})
 	
 	

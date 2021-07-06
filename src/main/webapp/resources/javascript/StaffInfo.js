@@ -96,6 +96,24 @@ var staffInfoService=(function(){
 		});
 	}
 	
+	function remove(param, callback, error){
+		var staff_no = param.staff_no; 
+		console.log("inside module"+staff_no);
+		$.ajax({
+			type:'delete',
+			url: '/delete/'+staff_no,
+			success: function(deleteResult, status, xhr){
+				if(callback){
+					callback(deleteResult);
+				}
+			},
+			error : function(xhr, status, er){
+				if(error){
+					error(er);
+				}
+			}
+		});
+	}
 	
 	return{
 		getDept:getDept,
@@ -103,7 +121,8 @@ var staffInfoService=(function(){
 		getSchool:getSchool,
 		add:add,
 		get:get,
-		update:update
+		update:update,
+		remove:remove
 	}
 })
 ()
