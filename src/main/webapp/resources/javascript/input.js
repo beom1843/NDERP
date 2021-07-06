@@ -20,9 +20,17 @@ $(document).ready(function(){
 			var m = document.getElementById("month1");
 			var grad_m = m.options[m.selectedIndex].text; 
 			var d = document.getElementById("day1");
-			var grad_d = d.options[d.selectedIndex].text; 
+			var grad_d = d.options[d.selectedIndex].text;
+			if(grad_m.length===1){
+				var m1=grad_m
+				grad_m="0"+m1;
+			}
+			if(grad_d.length===1){
+				var d1=grad_d
+				grad_d="0"+d1;
+			}
 
-			var g_day = grad_y+"."+grad_m+"."+grad_d;
+			var g_day = grad_y+"-"+grad_m+"-"+grad_d;
 			var s_List = [];
 			$("input[name='skillList']:checked").each(function(i){
 				s_List.push($(this).val());

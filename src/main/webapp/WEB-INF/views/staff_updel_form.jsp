@@ -37,15 +37,12 @@
 			<input type="password" id="jumin_2" name="jumin_2" size="7"> </td>
 			<th>부서</th>
 			<td>
-
 				<div class="dept_dropdown">
 				</div>
-
 			</td>
 		</tr>
 
 		<tr>
-		
 			<th>학력</th>
 			<td>
 				<div class="education_radio">
@@ -57,7 +54,6 @@
 				<div class="skill_checkbox">
 				</div>
 			</td>
-			
 		</tr>
 
 		<tr>
@@ -70,12 +66,12 @@
 		</tr>
 	</table>
 	
+	<button id="update" value="수정">수정</button>
+	<button id="delete" value="삭제">삭제</button>
+	
 
 	<script>
 	$(document).ready(function(){
-		
-
-		
 		
 		console.log("js 작동중");
 		/* 코드 불러오기 */
@@ -154,9 +150,10 @@
 			}//setDateBox 끝
 		
 			
-			//Staff 가져오기
+			
 			var s_no = '<c:out value ="${staff_no}"/>'; 
 			console.log(s_no);
+			//Staff 가져오기
 			
 			staffInfoService.get({
 				staff_no:s_no
@@ -193,7 +190,57 @@
 	                 $("input[name=skillList][value="+s_list[skill_code]+"]").prop("checked",true);
 					 }    
 				
-			})
+			})// Staff 정보 불러오기 끝
+			
+			$("#update").on("click", (function(e){
+				e.preventDefault();
+				var name= $("input[name='name']").val();
+				var j1= $("input[name='jumin_1']").val();
+				var j2= $("input[name='jumin_2']").val();
+				var j = j1+"-"+j2;
+				var sch_code= $("input[name='education']").val();
+				var dpt_code= $("select[name='dept_code']").val();
+
+				var y = document.getElementById("year1");
+				var grad_y = y.options[y.selectedIndex].text; 
+				var m = document.getElementById("month1");
+				var grad_m = m.options[m.selectedIndex].text; 
+				var d = document.getElementById("day1");
+				var grad_d = d.options[d.selectedIndex].text;
+				if(grad_m.length===1){
+					var m1=grad_m
+					grad_m="0"+m1;
+				}
+				if(grad_d.length===1){
+					var d1=grad_d
+					grad_d="0"+d1;
+				}
+
+				var g_day = grad_y+"-"+grad_m+"-"+grad_d;
+				var s_List = [];
+				$("input[name='skillList']:checked").each(function(i){
+					s_List.push($(this).val());
+				})
+				
+				console.log("스킬"+s_List);
+				console.log("주민"+j);
+				console.log("학력"+sch_code);
+				console.log("부서"+dpt_code);
+				console.log("졸업일"+g_day);
+				
+				staffInfoService.update({
+					staff_no:s_no,
+					staff_name:name,
+					jumin_no:j,
+					school_code:sch_code,
+					department_code:dpt_code,
+					graduate_day:g_day,
+					skill_list:s_List
+				},
+				function(result){
+					alert("RESULT:"+result)
+				});
+			}))
 			
 	})
 	

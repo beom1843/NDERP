@@ -60,8 +60,6 @@ public class StaffInfoController {
 			consumes = "application/json",
 			produces = { MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> addStaff(@RequestBody Staff staff){
-	
-		
 
 		int insertCount = service.insertStaff(staff);
 		

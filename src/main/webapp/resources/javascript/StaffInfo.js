@@ -76,13 +76,34 @@ var staffInfoService=(function(){
 		});
 	}
 	
+	function update(data,callback, error){
+		
+		$.ajax({
+			type: 'put',
+			url: '/update',
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+			success : function(result, status, xhr){
+				if(callback){
+					callback(result);
+				}
+			},
+			error:function(xhr, status, er){
+				if(error){
+					error(er)
+				}
+			}
+		});
+	}
+	
 	
 	return{
 		getDept:getDept,
 		getSkill:getSkill,
 		getSchool:getSchool,
 		add:add,
-		get:get
+		get:get,
+		update:update
 	}
 })
 ()
