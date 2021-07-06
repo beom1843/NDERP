@@ -21,25 +21,18 @@ public class PageController {
 	private StaffInfoService service;
 
 	@GetMapping("/staff_input_form")
-	public void input(Model model){
-		model.addAttribute("codeDept",service.getDept());
-		model.addAttribute("codeSchool",service.getSchool());
-		model.addAttribute("codeSkill",service.getSkill());
+	public void input(){
+	
 	}
 	
 	@GetMapping("/staff_search_form")
-	public void search(Model model){
-		model.addAttribute("codeDept",service.getDept());
-		model.addAttribute("codeSchool",service.getSchool());
-		model.addAttribute("codeSkill",service.getSkill());
+	public void search(){
+	
 	}
 	
 	@GetMapping("/staff_updel_form")
 	public void updel(int staff_no, Model model){
-		model.addAttribute("codeDept",service.getDept());
-		model.addAttribute("codeSchool",service.getSchool());
-		model.addAttribute("codeSkill",service.getSkill());
+
 		model.addAttribute("staff_no",staff_no);
 	}
-	
 }

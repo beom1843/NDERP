@@ -8,7 +8,7 @@
 	<!-- StaffInfo.js -->
 	<script src="/resources/javascript/StaffInfo.js"></script>
 	
-		<!-- jQuery library -->
+	<!-- jQuery library -->
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 	
 	<!-- CSS -->
@@ -28,7 +28,7 @@
 			<th>주민번호</th>
 			<td><input type="text" id="jumin_1" name="jumin_1" size="7">
 			-
-			<input type="password" id="jumin_1" name="jumin_1" size="7"> </td>
+			<input type="password" id="jumin_2" name="jumin_2" size="7"> </td>
 			<th>부서</th>
 			<td>
 
@@ -68,86 +68,14 @@
 		</tr>
 	</table>
 	
-	
+	<!-- Setting.js -->
+	<script src="/resources/javascript/setting.js"></script>	
 	<script>
 		$(document).ready(function(){
 		console.log("js 작동");
-		var DeptDropdown = $(".dept_dropdown");
-		var EduRadio = $(".education_radio");
-		var SkillChk=$(".skill_checkbox");
+
 		
-		getCode();
-		
-		function getCode(){
-			
-			staffInfoService.getDept(
-				function(deptList){
-					console.log("inside deptlist");
-					var str = "";
-				if(deptList == null || deptList.length ==0){ }
-				str += "<select id='dept_code'>";
-				for(var i=0, len=deptList.length||0;i<len;i++){
-					str += "<option value='"+deptList[i].department_code+"'>"+deptList[i].department_name+"</option>";
-				}
-				str += "</select>";
-				DeptDropdown.html(str);
-				});
-			
-			staffInfoService.getSchool(
-				function(schoolList){
-					var str = "";
-					if(schoolList == null || schoolList.length ==0){ }
-					for(var i=0, len=schoolList.length||0;i<len;i++){
-					str +="<input type='radio' name='education' value='"+schoolList[i].school_code+"' />";
-					str += schoolList[i].school_name;
-					}
-					EduRadio.html(str);
-				});
-			
-			staffInfoService.getSkill(
-					function(skillList){
-						var str = "";
-						if(skillList == null || skillList.length ==0){ }
-						for(var i=0, len=skillList.length||0;i<len;i++){
-						str +="<input type='checkbox' value='"+skillList[i].skill_code+"' />";
-						str += skillList[i].skill_name;
-						}
-						SkillChk.html(str);
-					})
-			
-			
-		}
-		
-		setDateBox();
-		
-		function setDateBox() {
-			var dt = new Date();
-			var year = "";
-			var com_year = dt.getFullYear();
 
-			// 발행 뿌려주기
-			$(".year").append("<option value=''>년도</option>");
-
-			// 올해 기준으로 -50년부터 +1년을 보여준다.
-			for (var y = (com_year); y >= (com_year - 50); y--) {
-				$(".year").append("<option value='" + y + "'>" + y + "</option>");
-			}
-
-			// 월 뿌려주기(1월부터 12월)
-			var month;
-			$(".month").append("<option value=''>월</option>");
-			for (var i = 1; i <= 12; i++) {
-				$(".month").append("<option value='" + i + "'>" + i + "</option>");
-			}
-
-			// 일 뿌려주기(1일부터 31일)
-			var day;
-			$(".day").append("<option value=''>일</option>");
-			for (var i = 1; i <= 31; i++) {
-				$(".day").append("<option value='" + i + "'>" + i + "</option>");
-			}
-
-		}
 	
 	}); 
 	
