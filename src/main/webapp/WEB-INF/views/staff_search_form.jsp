@@ -57,30 +57,28 @@
 		<tr>
 			<th>졸업일</th>
 			<td colspan="5">
-				<select class="year" id="year1" title="년도"	class="custom-select "></select>년 
-				<select class="month" id="month1" title="월" class="custom-select "></select>월 
-				<select	clsss="day" id="day1" title="일" class="custom-select "></select>일
+				<select class="year" id="year1" title="년도"	></select>년 
+				<select class="month" id="month1" title="월"></select>월 
+				<select	class="day" id="day1" title="일"></select>일
 						~
-				<select class="year" id="year1" title="년도"	class="custom-select "></select>년 
-				<select class="month" id="month1" title="월" class="custom-select "></select>월 
-				<select	class="day" id="day1" title="일" class="custom-select "></select>일		
+				<select class="year" id="year2" title="년도"></select>년 
+				<select class="month" id="month2" title="월"></select>월 
+				<select	class="day" id="day2" title="일"></select>일		
 			</td>
 		</tr>
 	</table>
 	
+	<button id="search" value="검색">검색</button>
+	<button id="searchAll" value="전부검색">전부검색</button>
+	<button id="reset" value="초기화">초기화</button>
+	<button id="register" value="등록">등록</button>
+
+
+	
 	<!-- Setting.js -->
-	<script src="/resources/javascript/setting.js"></script>	
-	<script>
-		$(document).ready(function(){
-		console.log("js 작동");
+	<script src="/resources/javascript/setting.js"></script>
+	<!-- Search.js -->
+	<script src="/resources/javascript/search.js"></script>	
 
-		
-
-	
-	}); 
-	
-	
-	
-	</script>
 </body>
 </html>

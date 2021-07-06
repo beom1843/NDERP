@@ -1,7 +1,5 @@
 $(document).ready(function(){
 			
-		console.log("js 작동");
-		
 		$("#reset").on("click", function(e){
 			self.location="staff_input_form";
 		}) 
@@ -35,12 +33,7 @@ $(document).ready(function(){
 			$("input[name='skillList']:checked").each(function(i){
 				s_List.push($(this).val());
 			})
-			
-			console.log("스킬"+s_List);
-			console.log("주민"+j);
-			console.log("학력"+sch_code);
-			console.log("부서"+dpt_code);
-			console.log("졸업일"+g_day);
+
 			
 			staffInfoService.add({
 				staff_name:name,

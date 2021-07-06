@@ -1,7 +1,6 @@
 $(document).ready(function(){
 	
 	var s_no = $("#staff_no").val();
-	console.log(s_no);
 	//Staff 가져오기
 	
 	staffInfoService.get({
@@ -90,8 +89,7 @@ $(document).ready(function(){
 		
 		
 		if(confirm("정말 삭제하시겠습니까?")){
-			console.log("삭제하겠다!");
-			console.log("번호"+s_no);
+
 			staffInfoService.remove({
 				staff_no:s_no
 			},
