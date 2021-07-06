@@ -74,21 +74,7 @@
 	<script>
 	$(document).ready(function(){
 		
-		var s_no = '<c:out value ="${staff_no}"/>'; 
-		console.log(s_no);
-		
-		staffInfoService.get({
-			staff_no:s_no
-		}, function(staff){
-			var j = staff.jumin_no;
-			var idx = j.indexOf("-",0);
-			
-			$("#name").val(staff.staff_name);
-			documnet.getElementById("jumin1").value=j.substr(0,idx);
-			documnet.getElementById("jumin2").value=j.substr(idx+1);
 
-			
-		})
 		
 		
 		console.log("js 작동중");
@@ -118,7 +104,7 @@
 						var str = "";
 						if(schoolList == null || schoolList.length ==0){ }
 						for(var i=0, len=schoolList.length||0;i<len;i++){
-						str +="<input type='radio' name='education' value='"+schoolList[i].school_code+"' />";
+						str +="<input type='radio' id='education' name='education' value='"+schoolList[i].school_code+"' />";
 						str += schoolList[i].school_name;
 						}
 						EduRadio.html(str);
@@ -129,7 +115,7 @@
 							var str = "";
 							if(skillList == null || skillList.length ==0){ }
 							for(var i=0, len=skillList.length||0;i<len;i++){
-							str +="<input type='checkbox' name='skillList' value='"+skillList[i].skill_code+"' />";
+							str +="<input type='checkbox' id='skillList' name='skillList' value='"+skillList[i].skill_code+"' />";
 							str += skillList[i].skill_name;
 							}
 							SkillChk.html(str);
@@ -166,6 +152,45 @@
 					$(".day").append("<option value='" + i + "'>" + i + "</option>");
 				}
 			}//setDateBox 끝
+		
+			
+			//Staff 가져오기
+			var s_no = '<c:out value ="${staff_no}"/>'; 
+			console.log(s_no);
+			
+			staffInfoService.get({
+				staff_no:s_no
+			}, function(staff){
+				//1. 이름
+				$("#name").val(staff.staff_name);
+				
+				//2. 주민번호
+				var j = staff.jumin_no;
+				var idx = j.indexOf("-",0);
+				var j1 = j.substr(0,idx);
+				var j2 = j.substr(idx+1);
+				
+				$("#jumin_1").val(j1);
+				$("#jumin_2").val(j2);
+				
+				//3. 졸업일
+				var g=staff.graduate_day;
+				var y = g.substring(0,4);
+				var m = g.substring(5,7);
+				var d = g.substring(8,10);
+				
+				m*=1;
+				d*=1;
+				
+				$("#year1").val(y);
+				$("#month1").val(m);
+				$("#day1").val(d);
+
+				console.log(staff.school_code);
+				
+				
+				
+			})
 			
 	})
 	

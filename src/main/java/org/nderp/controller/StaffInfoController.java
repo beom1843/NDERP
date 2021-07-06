@@ -34,7 +34,6 @@ public class StaffInfoController {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<CodeDAO>> getDept(){
-		log.info("-------------Controller_GetDept------------");
 		
 		return new ResponseEntity<List<CodeDAO>>(service.getDept(),HttpStatus.OK);
 	}
@@ -44,7 +43,6 @@ public class StaffInfoController {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<CodeDAO>> getSchool(){
-		log.info("-------------Controller_GetSchool------------");
 		
 		return new ResponseEntity<List<CodeDAO>>(service.getSchool(),HttpStatus.OK);
 	}
@@ -54,7 +52,6 @@ public class StaffInfoController {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<CodeDAO>> getSkill(){
-		log.info("-------------Controller_GetSkill------------");
 		
 		return new ResponseEntity<List<CodeDAO>>(service.getSkill(),HttpStatus.OK);
 	}
@@ -63,13 +60,10 @@ public class StaffInfoController {
 			consumes = "application/json",
 			produces = { MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> addStaff(@RequestBody Staff staff){
-		log.info("------------Controller_addStaff----------------");
 	
-		log.info("Staff"+staff);
 		
 
 		int insertCount = service.insertStaff(staff);
-		log.info("------------Controller_end----------------");	
 		
 		return insertCount==1
 				? new ResponseEntity<>("success", HttpStatus.OK)
@@ -81,7 +75,6 @@ public class StaffInfoController {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<Staff> getStaff(@PathVariable("staff_no") int staff_no){
-		log.info("-------------Controller_GetSkill------------");
 		
 		return new ResponseEntity<Staff>(service.readStaff(staff_no),HttpStatus.OK);
 	}
@@ -90,7 +83,6 @@ public class StaffInfoController {
 			produces = { MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> delete(@PathVariable("staff_no")int staff_no){
 		
-		log.info("remove:" +staff_no);
 		
 		
 		return service.deleteStaff(staff_no)==1

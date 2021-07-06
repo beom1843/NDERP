@@ -25,7 +25,7 @@
 					var str = "";
 					if(schoolList == null || schoolList.length ==0){ }
 					for(var i=0, len=schoolList.length||0;i<len;i++){
-					str +="<input type='radio' name='education' value='"+schoolList[i].school_code+"' />";
+					str +="<input type='radio' id='education' name='education' value='"+schoolList[i].school_code+"' />";
 					str += schoolList[i].school_name;
 					}
 					EduRadio.html(str);
@@ -36,7 +36,7 @@
 						var str = "";
 						if(skillList == null || skillList.length ==0){ }
 						for(var i=0, len=skillList.length||0;i<len;i++){
-						str +="<input type='checkbox' name='skillList' value='"+skillList[i].skill_code+"' />";
+						str +="<input type='checkbox' id='skillList' name='skillList' value='"+skillList[i].skill_code+"' />";
 						str += skillList[i].skill_name;
 						}
 						SkillChk.html(str);
