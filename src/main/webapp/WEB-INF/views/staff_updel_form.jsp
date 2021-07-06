@@ -161,10 +161,8 @@
 			staffInfoService.get({
 				staff_no:s_no
 			}, function(staff){
-				//1. 이름
 				$("#name").val(staff.staff_name);
 				
-				//2. 주민번호
 				var j = staff.jumin_no;
 				var idx = j.indexOf("-",0);
 				var j1 = j.substr(0,idx);
@@ -173,7 +171,6 @@
 				$("#jumin_1").val(j1);
 				$("#jumin_2").val(j2);
 				
-				//3. 졸업일
 				var g=staff.graduate_day;
 				var y = g.substring(0,4);
 				var m = g.substring(5,7);
@@ -186,9 +183,15 @@
 				$("#month1").val(m);
 				$("#day1").val(d);
 
-				console.log(staff.school_code);
+				$('#dept_code').val(staff.department_code).prop('selected',true);
 				
+				$('input:radio[name=education]:input[value=' + staff.school_code + ']').attr("checked", true);
 				
+				var s_list=staff.skill_list;
+				
+				 for (var skill_code  in s_list) {
+	                 $("input[name=skillList][value="+s_list[skill_code]+"]").prop("checked",true);
+					 }    
 				
 			})
 			
