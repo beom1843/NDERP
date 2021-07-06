@@ -1,22 +1,7 @@
 console.log("StaffInfo Module......");
 
 var staffInfoService=(function(){
-	
 
-//	function getDept(callback, error){
-//		console.log("getDept...........");
-//		$.getJSON("/codeDept", 
-//				function(data){
-//			if(callback){
-//				callback(data);
-//			}
-//		}).fail(function(xhr,status,err){ 
-//			if(error){
-//				error();
-//			}
-//		});
-//	}//getDept 함수 끝
-	
 	function getDept(callback, error){
 		console.log("getDept...........");
 		$.getJSON("/codeDept", 
