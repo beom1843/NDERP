@@ -13,6 +13,7 @@
 					var str = "";
 				if(deptList == null || deptList.length ==0){ }
 				str += "<select id='dept_code' name='dept_code'>";
+				str += "<option value='' selected disabled hidden></option>"
 				for(var i=0, len=deptList.length||0;i<len;i++){
 					str += "<option value='"+deptList[i].department_code+"'>"+deptList[i].department_name+"</option>";
 				}
@@ -25,7 +26,7 @@
 					var str = "";
 					if(schoolList == null || schoolList.length ==0){ }
 					for(var i=0, len=schoolList.length||0;i<len;i++){
-					str +="<input type='checkbox' id='education"+i+"' name='education' value='"+schoolList[i].school_code+"' />";
+					str +="<input type='radio' id='education' name='education' value='"+schoolList[i].school_code+"' />";
 					str += schoolList[i].school_name;
 					}
 					EduRadio.html(str);
@@ -78,17 +79,6 @@
 			}
 		}//setDateBox 끝
 		
-		$("input[name=education]").on("click",function(element){
-			  alert("clikc");
-			  const checkboxes 
-			      = document.getElementsByName("education");
-			  
-			  checkboxes.forEach((cb) => {
-			    cb.checked = false;
-			  })
-			  
-			  element.checked = true;
-			})
 
 		
 })

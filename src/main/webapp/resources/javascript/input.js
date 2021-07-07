@@ -42,22 +42,42 @@ $(document).ready(function(){
 			console.log(j);
 			console.log(g_day);
 			console.log("S"+sch_code);
+			console.log("D"+dpt_code);
 			console.log("SK"+s_List.length);
 			var j_OK= (/\d{6}\-[1-4]\d{6}/g).test(j);
 			var isAllOK =0;
 			
 			var g_OK=(/\d{4}\-\d{2}\-\d{2}/g).test(g_day)
 			
-			if(!g_OK){
-				message += "정확한 날짜를 입력해주세요.\n"
+			if(!g_OK&!(g_day=="년도-0월-0일")){
+				message += "**정확한 날짜를 입력해주세요.**\n"
 				isAllOK+=1;
 			}
-			if(!j_OK){
-				message += "정확한 주민등록번호를 입력해주세요.\n"
+			if(!j_OK&!(j=="-")){
+				message += "**정확한 주민등록번호를 입력해주세요.**\n"
 				isAllOK+=1;
 			}
-			if(!(name&sch_code&dpt_code&!(g_day=="년도-0월-0일")&!(j=="-"))){
-				message += "[미입력 사항]"
+			if(!(name&sch_code&dpt_code&!(g_day=="년도-0월-0일")&!(j=="-")&!(s_List.length==0))){
+				message += "**[미입력 사항]** \n"
+				isAllOK+=1;
+			}
+			if(!name){
+				message +="- 이름 \n"
+			}
+			if(!sch_code){
+				message +="- 학력 \n"
+			}
+			if(j=="-"){
+				message +="- 주민번호 \n"
+			}
+			if(!dpt_code){
+				message +="- 부서 \n"
+			}
+			if(g_day=="년도-0월-0일"){
+				message +="- 졸업일 \n"
+			}
+			if(s_List.length==0){
+				message +="- 기술 \n"
 			}
 			if(isAllOK !==0){
 				alert(message);
