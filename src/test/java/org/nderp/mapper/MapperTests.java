@@ -3,7 +3,6 @@ package org.nderp.mapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.nderp.domain.Staff;
-//import org.nderp.mapper.TimeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -17,7 +16,6 @@ import lombok.extern.log4j.Log4j;
 public class MapperTests {
 
 	@Setter(onMethod_=@Autowired)
-//	private TimeMapper timeMapper;
 //	private CodeMapper mapper;
 	private StaffMapper staffMapper;
 	
@@ -52,23 +50,23 @@ public class MapperTests {
 //	}
 	
 	
-//	@Test
-//	public void testUpdate(){
-//		Staff staff = new Staff();
-//		staff.setDepartment_code(2);
-//		staff.setGraduate_day("2012-02-26");
-//		staff.setJumin_no("921015-2000000");
-//		staff.setStaff_name("조길동");
-//		staff.setSchool_code(2);
-//		
-//		log.info(staffMapper.update(staff));
-//	}
-	
 	@Test
-	public void testGet(){
-		int staff_no = 22;
+	public void testUpdate(){
+		Staff staff = new Staff();
+		staff.setDepartment_code(2);
+		staff.setGraduate_day("2012-02-26");
+		staff.setJumin_no("921015-2000000");
+		staff.setStaff_name("조길동");
+		staff.setSchool_code(2);
 		
-		int[] skillArr = staffMapper.getSkill(staff_no);
-		
+		log.info(staffMapper.update(staff));
 	}
+	
+//	@Test
+//	public void testGet(){
+//		int staff_no = 22;
+//		
+//		int[] skillArr = staffMapper.getSkill(staff_no);
+//		
+//	}
 }

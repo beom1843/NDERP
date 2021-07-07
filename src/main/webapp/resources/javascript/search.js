@@ -5,8 +5,8 @@ $(document).ready(function(){
 		$("#register").on("click", function(e){
 			e.preventDefault();
 			var url = "staff_input_form";
-			var name= "사원 정보 등록";
-			var option="location= no, height=100";
+			var name= "Register_new_Staff";
+			var option="location= no,height=";
 			window.open(url,name,option);
 		})
 })

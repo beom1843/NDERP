@@ -25,11 +25,13 @@
 					var str = "";
 					if(schoolList == null || schoolList.length ==0){ }
 					for(var i=0, len=schoolList.length||0;i<len;i++){
-					str +="<input type='radio' id='education' name='education' value='"+schoolList[i].school_code+"' />";
+					str +="<input type='checkbox' id='education"+i+"' name='education' value='"+schoolList[i].school_code+"' />";
 					str += schoolList[i].school_name;
 					}
 					EduRadio.html(str);
+					
 				});
+			
 			
 			staffInfoService.getSkill(
 					function(skillList){
@@ -43,6 +45,8 @@
 					})
 			
 		}//getCode, 코드불러오기 끝
+		
+		
 		
 		
 		setDateBox();
@@ -73,5 +77,18 @@
 				$(".day").append("<option value='" + i + "'>" + i + "</option>");
 			}
 		}//setDateBox 끝
+		
+		$("input[name=education]").on("click",function(element){
+			  alert("clikc");
+			  const checkboxes 
+			      = document.getElementsByName("education");
+			  
+			  checkboxes.forEach((cb) => {
+			    cb.checked = false;
+			  })
+			  
+			  element.checked = true;
+			})
+
 		
 })
