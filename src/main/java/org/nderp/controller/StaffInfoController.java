@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.nderp.domain.CodeDAO;
 import org.nderp.domain.Criteria;
+import org.nderp.domain.ResultDAO;
 import org.nderp.domain.Staff;
 import org.nderp.service.StaffInfoService;
 import org.springframework.http.HttpStatus;
@@ -96,6 +97,19 @@ public class StaffInfoController {
 		return service.updateStaff(staff) ==1
 				? new ResponseEntity<>("success",HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@GetMapping(value = "/list/{pageNum}",
+			produces={
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<ResultDAO>> getList(@PathVariable("pageNum") int pageNum){
+		
+		Criteria cri = new Criteria();
+		cri.setAmount(5);
+		cri.setPageNum(pageNum);
+		
+		return new ResponseEntity<List<ResultDAO>>(service.listStaff(cri),HttpStatus.OK);
 	}
 	
 	

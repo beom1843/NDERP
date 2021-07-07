@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.nderp.domain.Criteria;
+import org.nderp.domain.ResultDAO;
 import org.nderp.domain.Staff;
 
 public interface StaffMapper {
@@ -12,7 +13,7 @@ public interface StaffMapper {
 	public int delete(int staff_no);
 	public int update(Staff staff);
 	public Staff get(int staff_no);
-	public List<Staff> getListWithPaging(Criteria cri);
+	public List<ResultDAO> getListWithPaging(Criteria cri);
 	
 	
 	public int insertSkill(int skill_code);

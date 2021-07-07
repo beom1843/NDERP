@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	
 	var s_no = $("#staff_no").val();
+	
 	//Staff 가져오기
 	
 	staffInfoService.get({

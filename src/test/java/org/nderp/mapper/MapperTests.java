@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.nderp.domain.Criteria;
+import org.nderp.domain.ResultDAO;
 import org.nderp.domain.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -78,7 +79,7 @@ public class MapperTests {
 		//5개씩 3페이지
 		cri.setPageNum(3);
 		cri.setAmount(5);
-		List<Staff> list = staffMapper.getListWithPaging(cri);
+		List<ResultDAO> list = staffMapper.getListWithPaging(cri);
 		list.forEach(staff -> log.info(staff));
 	}
 }

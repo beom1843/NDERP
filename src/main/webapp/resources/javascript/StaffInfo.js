@@ -115,6 +115,22 @@ var staffInfoService=(function(){
 		});
 	}
 	
+	function getList(param,callback, error){
+		var pageNum = param.pageNum;
+		$.getJSON("/list/"+pageNum+".json", 
+				function(data){
+			if(callback){
+				callback(data);
+			}
+		}).fail(function(xhr,status,err){
+			if(error){
+				error();
+			}
+		});
+	}
+	
+	
+	
 	return{
 		getDept:getDept,
 		getSkill:getSkill,
@@ -122,7 +138,8 @@ var staffInfoService=(function(){
 		add:add,
 		get:get,
 		update:update,
-		remove:remove
+		remove:remove,
+		getList:getList
 	}
 })
 ()

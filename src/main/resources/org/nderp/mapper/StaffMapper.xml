@@ -59,14 +59,17 @@
 			order by skill_code
 	</select>
 	
-	<select id="getListWithPaging" resultType = "org.nderp.domain.Staff">
+	<select id="getListWithPaging" resultType = "org.nderp.domain.ResultDAO">
 		<![CDATA[
 		select
-			staff_no, staff_name, jumin_no, department_code, graduate_day
+			rn, staff_no, staff_name, substr(jumin_no,8,1) sex, 
+			(select department_name
+			from code_department
+			where department_code = dept) department_name, graduate_day
 			from
 			(
 			select 
-			rownum rn, staff_no, staff_name, jumin_no,department_code, graduate_day
+			rownum rn, staff_no, staff_name, jumin_no,department_code dept, graduate_day
 			from staff
 			where rownum<=#{pageNum} * #{amount}
 			)
