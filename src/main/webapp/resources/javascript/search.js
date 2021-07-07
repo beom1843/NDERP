@@ -1,5 +1,16 @@
 $(document).ready(function(){
-			
+		
+	window.checkOnlyOneX=function(element){
+		  const checkboxes 
+		      = document.getElementsByName("sex");
+
+		  checkboxes.forEach((cb) => {
+		    cb.checked = false;
+		  })
+
+		  element.checked = true;
+		}
+		
 		console.log("js 작동");
 
 		$("#register").on("click", function(e){

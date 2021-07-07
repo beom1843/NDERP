@@ -25,10 +25,11 @@
 		<tr>
 			<th>이름</th>
 			<td><input type="text" id="name" name="name"></td>
-			<th>주민번호</th>
-			<td><input type="text" id="jumin_1" name="jumin_1" size="7">
-			-
-			<input type="password" id="jumin_2" name="jumin_2" size="7"> </td>
+			<th>성별</th>
+			<td>
+			<input type='checkbox' id='sex' name='sex' onclick ='checkOnlyOneX(this)' value="M">남
+			<input type='checkbox' id='sex' name='sex' onclick ='checkOnlyOneX(this)' value="F">여
+			</td>
 			<th>부서</th>
 			<td>
 

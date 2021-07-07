@@ -26,7 +26,7 @@
 					var str = "";
 					if(schoolList == null || schoolList.length ==0){ }
 					for(var i=0, len=schoolList.length||0;i<len;i++){
-					str +="<input type='radio' id='education' name='education' value='"+schoolList[i].school_code+"' />";
+					str +="<input type='checkbox' id='education' name='education' onclick ='checkOnlyOne(this)' value='"+schoolList[i].school_code+"' />";
 					str += schoolList[i].school_name;
 					}
 					EduRadio.html(str);
@@ -79,6 +79,15 @@
 			}
 		}//setDateBox 끝
 		
+	window.checkOnlyOne=function(element){
+		  const checkboxes 
+		      = document.getElementsByName("education");
 
+		  checkboxes.forEach((cb) => {
+		    cb.checked = false;
+		  })
+
+		  element.checked = true;
+		}
 		
 })
