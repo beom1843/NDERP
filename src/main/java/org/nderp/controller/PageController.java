@@ -1,6 +1,7 @@
 package org.nderp.controller;
 
 
+import org.nderp.domain.Criteria;
 import org.nderp.service.StaffInfoService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -25,8 +26,8 @@ public class PageController {
 	}
 	
 	@GetMapping("/staff_search_form")
-	public void search(){
-	
+	public void search(Criteria cri, Model model){
+	//페이징 처리 여기서 할 것
 	}
 	
 	@GetMapping("/staff_updel_form")

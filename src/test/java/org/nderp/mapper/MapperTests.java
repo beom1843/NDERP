@@ -1,7 +1,10 @@
 package org.nderp.mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.nderp.domain.Criteria;
 import org.nderp.domain.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -49,18 +52,17 @@ public class MapperTests {
 //		log.info(staffMapper.delete(staff_no));
 //	}
 	
-	
-	@Test
-	public void testUpdate(){
-		Staff staff = new Staff();
-		staff.setDepartment_code(2);
-		staff.setGraduate_day("2012-02-26");
-		staff.setJumin_no("921015-2000000");
-		staff.setStaff_name("조길동");
-		staff.setSchool_code(2);
-		
-		log.info(staffMapper.update(staff));
-	}
+//	@Test
+//	public void testUpdate(){
+//		Staff staff = new Staff();
+//		staff.setDepartment_code(2);
+//		staff.setGraduate_day("2012-02-26");
+//		staff.setJumin_no("921015-2000000");
+//		staff.setStaff_name("조길동");
+//		staff.setSchool_code(2);
+//		
+//		log.info(staffMapper.update(staff));
+//	}
 	
 //	@Test
 //	public void testGet(){
@@ -69,4 +71,14 @@ public class MapperTests {
 //		int[] skillArr = staffMapper.getSkill(staff_no);
 //		
 //	}
+	
+	@Test
+	public void testPaging(){
+		Criteria cri = new Criteria();
+		//5개씩 3페이지
+		cri.setPageNum(3);
+		cri.setAmount(5);
+		List<Staff> list = staffMapper.getListWithPaging(cri);
+		list.forEach(staff -> log.info(staff));
+	}
 }

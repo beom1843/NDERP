@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.nderp.domain.CodeDAO;
+import org.nderp.domain.Criteria;
 import org.nderp.domain.Staff;
 import org.nderp.mapper.CodeMapper;
 import org.nderp.mapper.StaffMapper;
@@ -88,6 +89,12 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 		staff.setSkill_list(staffMapper.getSkill(staffNo));
 		
 		return staff;
+	}
+
+	@Override
+	public List<Staff> listStaff(Criteria cri) {
+		
+		return staffMapper.getListWithPaging(cri);
 	}
 	
 	

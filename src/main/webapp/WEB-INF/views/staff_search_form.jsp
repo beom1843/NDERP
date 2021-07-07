@@ -74,6 +74,9 @@
 	<button id="register" value="등록">등록</button>
 
 
+
+	<div class="result">
+	</div>
 	
 	<!-- Setting.js -->
 	<script src="/resources/javascript/setting.js"></script>
