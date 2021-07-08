@@ -113,6 +113,20 @@ public class StaffInfoController {
 		return new ResponseEntity<List<ResultDAO>>(service.listStaff(cri),HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/pageIdx/{pageNum}",
+			produces={
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<PageDTO> pageIdx(@PathVariable("pageNum") int pageNum){
+		
+		
+		Criteria cri = new Criteria();
+		cri.setAmount(5);
+		cri.setPageNum(pageNum);
+		PageDTO pageMaker = new PageDTO(cri,123);
+		
+		return new ResponseEntity<PageDTO>(pageMaker,HttpStatus.OK);
+	}
 	
 
 }

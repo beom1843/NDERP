@@ -13,6 +13,7 @@
 	
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css"	href="/resources/css/table.css" />
+	<link rel="stylesheet" type="text/css"	href="/resources/css/search.css" />
 
 </head>
 <body>
@@ -77,7 +78,11 @@
 
 
 	<div class="result">
+	
+
 	</div>
+			<div class="pagination"></div>
+
 	
 	<!-- Setting.js -->
 	<script src="/resources/javascript/setting.js"></script>

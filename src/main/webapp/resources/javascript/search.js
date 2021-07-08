@@ -1,12 +1,37 @@
 $(document).ready(function(){
+		
+
+
+	function paginate(page){
+		var str=""
+		var pagination = $(".pagination");
+		
+			staffInfoService.paginate({
+			pageNum: page
+		},function(pageMaker){
+			if(pageMaker.prev){
+				str+="<li class='paginate_button previous'><a href=''>이전</a></li>"
+			}
+			for(var i = pageMaker.startPage; i<pageMaker.endPage+1;i++ ){
+				if(i==page){
+					str+="<li class='paginate_button'><a href='"+i+"'>["+i+"]</a></li>";
+				}else{
+					str+="<li class='paginate_button'><a href='"+i+"'>"+i+"</a></li>";
+				}
+
+			}
+			if(pageMaker.next){
+				str+="<li class='paginate_button next'><a href='#'>다음</a></li>"
+			}
+			pagination.html(str);
+		})
+		}
 	
-	
-	$("#searchAll").on("click", (function(e){
+	function searchResult(page){
 		var str	="";
 		var result = $(".result");
-		
 		staffInfoService.getList({
-			pageNum:1
+			pageNum:page
 		},function(list){
 		if(list == null || list.length ==0){ }
 		str+="<table style='width: 80%'>";
@@ -29,12 +54,22 @@ $(document).ready(function(){
 		
 		str+="<td>"+list[i].department_name+"</td>";
 		str+="<td>"+list[i].graduate_day+"</td>";
-		str+="<td><button id='upDel' value='"+list[i].staff_no+"' onclick = upDelLink()>수정/삭제</button>";
+		str+="<td><button id='upDel' value='"+list[i].staff_no+"' onclick = upDelLink() >수정/삭제</button>";
 		str+="</tr>"
 		}
 		result.html(str);
 		});
-	}))//전부검색 버튼 클릭이벤트 끝
+	}
+	
+	$(".")
+	
+	
+	$("#searchAll").on("click", (function(e){
+		var page=1;
+		paginate(page);
+		searchResult(page);
+		
+	}))
 			
 	$("#reset").on("click", function(e){
 			self.location="staff_search_form";
@@ -43,7 +78,9 @@ $(document).ready(function(){
 	
 	window.upDelLink= function(staff){
 
-		var staff_no= $(this).attr('value');
+		//var staff_no= staff.target.value
+		var staff_no = $(this).value
+		
 		var url="staff_updel_form?staff_no="+staff_no;
 		alert(staff_no);
 /*		var name = "Update_or_Delete";

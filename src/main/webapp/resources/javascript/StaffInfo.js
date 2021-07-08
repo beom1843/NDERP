@@ -129,6 +129,19 @@ var staffInfoService=(function(){
 		});
 	}
 	
+	function paginate(param,callback,error){
+		var pageNum = param.pageNum;
+		$.getJSON("/pageIdx/"+pageNum+".json",
+				function(data){
+			if(callback){
+				callback(data);
+			}
+		}).fail(function(xrh,status,err){
+			if(error){
+				error();
+			}
+		});
+	}
 	
 	
 	
@@ -140,7 +153,8 @@ var staffInfoService=(function(){
 		get:get,
 		update:update,
 		remove:remove,
-		getList:getList
+		getList:getList,
+		paginate:paginate
 	}
 })
 ()
