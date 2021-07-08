@@ -2,6 +2,7 @@ package org.nderp.controller;
 
 
 import org.nderp.domain.Criteria;
+import org.nderp.dto.PageDTO;
 import org.nderp.service.StaffInfoService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,8 @@ public class PageController {
 	}
 	
 	@GetMapping("/staff_search_form")
-	public void search(){
+	public void search(Criteria cri, Model model){
+		model.addAttribute("pageMaker",new PageDTO(cri,123));
 	}
 	
 	@GetMapping("/staff_updel_form")

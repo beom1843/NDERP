@@ -9,7 +9,7 @@ $(document).ready(function(){
 			pageNum:1
 		},function(list){
 		if(list == null || list.length ==0){ }
-		str+="<table style='width: 100%'>";
+		str+="<table style='width: 80%'>";
 		str+="	<tr><th>번호</th>";
 		str+="<th>이름</th>";
 		str+="<th>성별</th>";
@@ -29,12 +29,30 @@ $(document).ready(function(){
 		
 		str+="<td>"+list[i].department_name+"</td>";
 		str+="<td>"+list[i].graduate_day+"</td>";
+		str+="<td><button id='upDel' value='"+list[i].staff_no+"' onclick = upDelLink()>수정/삭제</button>";
 		str+="</tr>"
 		}
 		result.html(str);
 		});
-	}))
+	}))//전부검색 버튼 클릭이벤트 끝
+			
+	$("#reset").on("click", function(e){
+			self.location="staff_search_form";
+	})
+
 	
+	window.upDelLink= function(staff){
+
+		var staff_no= $(this).attr('value');
+		var url="staff_updel_form?staff_no="+staff_no;
+		alert(staff_no);
+/*		var name = "Update_or_Delete";
+		var option="location= no,height=100";
+		console.log(url);
+		window.open(url,name,option);*/
+	}
+	
+
 	
 	
 	window.checkOnlyOneX=function(element){
@@ -51,10 +69,10 @@ $(document).ready(function(){
 		console.log("js 작동");
 
 		$("#register").on("click", function(e){
-			e.preventDefault();
+			e.preventDefault(e);
 			var url = "staff_input_form";
 			var name= "Register_new_Staff";
-			var option="location= no,height=";
+			var option="location= no,height=100";
 			window.open(url,name,option);
 		})
 })

@@ -7,6 +7,7 @@ import org.nderp.domain.CodeDAO;
 import org.nderp.domain.Criteria;
 import org.nderp.domain.ResultDAO;
 import org.nderp.domain.Staff;
+import org.nderp.dto.PageDTO;
 import org.nderp.service.StaffInfoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -111,7 +112,6 @@ public class StaffInfoController {
 		
 		return new ResponseEntity<List<ResultDAO>>(service.listStaff(cri),HttpStatus.OK);
 	}
-	
 	
 	
 
