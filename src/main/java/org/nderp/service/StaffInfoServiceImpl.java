@@ -97,6 +97,12 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 		
 		return staffMapper.getListWithPaging(cri);
 	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+
+		return staffMapper.getTotal(cri);
+	}
 	
 	
 

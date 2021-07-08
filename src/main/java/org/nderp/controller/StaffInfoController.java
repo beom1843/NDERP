@@ -123,12 +123,11 @@ public class StaffInfoController {
 		Criteria cri = new Criteria();
 		cri.setAmount(5);
 		cri.setPageNum(pageNum);
-		int size = service.listStaff(cri).size();
+		int size = service.getTotal(cri);
 		log.info(size);
 		PageDTO pageMaker = new PageDTO(cri,size);
 		
 		return new ResponseEntity<PageDTO>(pageMaker,HttpStatus.OK);
 	}
-	
 
 }

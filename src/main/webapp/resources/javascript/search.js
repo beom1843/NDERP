@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 		var str=""
 		var pagination = $(".pagination");
-		
+		var total = $(".total")
 			staffInfoService.paginate({
 			pageNum: page
 		},function(pageMaker){
@@ -22,6 +22,8 @@ $(document).ready(function(){
 				str+="<li class='paginate_button next' onclick ='movePage("+((pageMaker.endPage*1)+1)+")'>다음</a></li>"
 			}
 			pagination.html(str);
+			total.html("총 "+pageMaker.total+"건");
+			
 		})
 		
 		}
