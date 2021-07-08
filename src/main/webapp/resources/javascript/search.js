@@ -1,8 +1,10 @@
 $(document).ready(function(){
 		
+	
 
 
 	function paginate(page){
+
 		var str=""
 		var pagination = $(".pagination");
 		
@@ -10,24 +12,26 @@ $(document).ready(function(){
 			pageNum: page
 		},function(pageMaker){
 			if(pageMaker.prev){
-				str+="<li class='paginate_button previous'><a href=''>이전</a></li>"
+				str+="<li class='paginate_button previous' value ='"+(pageMaker.startPage-1)+"'> <a href='"+(pageMaker.startPage-1)+"'>이전</a></li>"
 			}
 			for(var i = pageMaker.startPage; i<pageMaker.endPage+1;i++ ){
 				if(i==page){
-					str+="<li class='paginate_button'><a href='"+i+"'>["+i+"]</a></li>";
+					str+="<li class='paginate_button' value ='"+i+"'><a href='"+i+"'>["+i+"]</a></li>";
 				}else{
 					str+="<li class='paginate_button'><a href='"+i+"'>"+i+"</a></li>";
 				}
-
 			}
 			if(pageMaker.next){
-				str+="<li class='paginate_button next'><a href='#'>다음</a></li>"
+				str+="<li class='paginate_button next' value ='"+((pageMaker.endPage*1)+1)+"'> <a href='"+((pageMaker.endPage*1)+1)+"'>다음</a></li>"
 			}
 			pagination.html(str);
 		})
+		
 		}
 	
 	function searchResult(page){
+		var hidden=$(".pageNum");
+		hidden.html("<input type='hidden' name='pageNum' value='"+page+"' />")
 		var str	="";
 		var result = $(".result");
 		staffInfoService.getList({
@@ -54,15 +58,16 @@ $(document).ready(function(){
 		
 		str+="<td>"+list[i].department_name+"</td>";
 		str+="<td>"+list[i].graduate_day+"</td>";
-		str+="<td><button id='upDel' value='"+list[i].staff_no+"' onclick = upDelLink() >수정/삭제</button>";
+		str+="<td><button id='upDel' value='"+list[i].staff_no+"' onclick = upDelLink("+list[i].staff_no+") >수정/삭제</button>";
 		str+="</tr>"
 		}
 		result.html(str);
 		});
 	}
 	
-	$(".")
-	
+	$("paginate").on("click",function(e){
+		var page = $(this).data("")
+	})
 	
 	$("#searchAll").on("click", (function(e){
 		var page=1;
@@ -76,17 +81,14 @@ $(document).ready(function(){
 	})
 
 	
-	window.upDelLink= function(staff){
+	window.upDelLink= function(staff_no){
 
-		//var staff_no= staff.target.value
-		var staff_no = $(this).value
 		
 		var url="staff_updel_form?staff_no="+staff_no;
-		alert(staff_no);
-/*		var name = "Update_or_Delete";
+		var name = "Update_or_Delete";
 		var option="location= no,height=100";
 		console.log(url);
-		window.open(url,name,option);*/
+		window.open(url,name,option);
 	}
 	
 
