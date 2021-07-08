@@ -18,6 +18,8 @@ public class PageDTO {
 
 	private double value;
 	
+	private int realEnd;
+	
 	public PageDTO(Criteria cri, int total){
 		this.cri = cri;
 		this.total = total;
@@ -27,7 +29,7 @@ public class PageDTO {
 
 		this.value = ((double) cri.getPageNum())/5;
 		
-		int realEnd = (int) (Math.ceil((total *1.0)/cri.getAmount()));
+		this.realEnd = (int) (Math.ceil((double)(total *1.0)/cri.getAmount()));
 		
 		if(realEnd< this.endPage){
 			this.endPage = realEnd;

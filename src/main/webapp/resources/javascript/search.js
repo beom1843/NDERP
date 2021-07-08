@@ -1,8 +1,5 @@
 $(document).ready(function(){
-		
 	
-
-
 	function paginate(page){
 
 		var str=""
@@ -12,17 +9,17 @@ $(document).ready(function(){
 			pageNum: page
 		},function(pageMaker){
 			if(pageMaker.prev){
-				str+="<li class='paginate_button previous' value ='"+(pageMaker.startPage-1)+"'> <a href='"+(pageMaker.startPage-1)+"'>이전</a></li>"
+				str+="<li class='paginate_button previous' onclick ='movePage("+(pageMaker.startPage-1)+")' >이전</a></li>"
 			}
 			for(var i = pageMaker.startPage; i<pageMaker.endPage+1;i++ ){
 				if(i==page){
-					str+="<li class='paginate_button' value ='"+i+"'><a href='"+i+"'>["+i+"]</a></li>";
+					str+="<li class='paginate_button' onclick ='movePage("+i+")'>["+i+"]</a></li>";
 				}else{
-					str+="<li class='paginate_button'><a href='"+i+"'>"+i+"</a></li>";
+					str+="<li class='paginate_button' onclick ='movePage("+i+")'>"+i+"</a></li>";
 				}
 			}
 			if(pageMaker.next){
-				str+="<li class='paginate_button next' value ='"+((pageMaker.endPage*1)+1)+"'> <a href='"+((pageMaker.endPage*1)+1)+"'>다음</a></li>"
+				str+="<li class='paginate_button next' onclick ='movePage("+((pageMaker.endPage*1)+1)+")'>다음</a></li>"
 			}
 			pagination.html(str);
 		})
@@ -65,9 +62,7 @@ $(document).ready(function(){
 		});
 	}
 	
-	$("paginate").on("click",function(e){
-		var page = $(this).data("")
-	})
+
 	
 	$("#searchAll").on("click", (function(e){
 		var page=1;
@@ -83,7 +78,6 @@ $(document).ready(function(){
 	
 	window.upDelLink= function(staff_no){
 
-		
 		var url="staff_updel_form?staff_no="+staff_no;
 		var name = "Update_or_Delete";
 		var option="location= no,height=100";
@@ -91,7 +85,11 @@ $(document).ready(function(){
 		window.open(url,name,option);
 	}
 	
-
+	window.movePage = function(pageNum){
+		var page= pageNum;
+		paginate(page);
+		searchResult(page);
+	}
 	
 	
 	window.checkOnlyOneX=function(element){

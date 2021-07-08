@@ -14,6 +14,7 @@ public interface StaffMapper {
 	public int update(Staff staff);
 	public Staff get(int staff_no);
 	public List<ResultDAO> getListWithPaging(Criteria cri);
+	public int getTotal(Criteria cri);
 	
 	
 	public int insertSkill(int skill_code);

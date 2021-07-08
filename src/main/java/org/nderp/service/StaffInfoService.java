@@ -20,4 +20,5 @@ public interface StaffInfoService {
 	public int updateStaff(Staff staff);
 	public Staff readStaff(int staffNo);
 	public List<ResultDAO> listStaff(Criteria cri);
-}
+	public int getTotal(Criteria cri);
+}	
