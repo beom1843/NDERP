@@ -73,13 +73,41 @@ public class MapperTests {
 //		
 //	}
 	
+//	@Test
+//	public void testPaging(){
+//		Criteria cri = new Criteria();
+//		//5개씩 3페이지
+//		cri.setPageNum(3);
+//		cri.setAmount(5);
+//		List<ResultDAO> list = staffMapper.getListWithPaging(cri);
+//		list.forEach(staff -> log.info(staff));
+//	}
+	
+//	@Test
+//	public void testSearchingPaging(){
+//		Criteria cri = new Criteria();
+//		cri.setPageNum(1);
+//		cri.setAmount(5);
+//		cri.setType("KN");
+////	cri.setType("N");
+//	cri.setKeyword("서");
+////	cri.setType("K");
+//	cri.setSkill("123");
+//		List<ResultDAO> list = staffMapper.getListWithPaging(cri);
+////		
+//		list.forEach(b -> log.info(b));
+//	}
+	
 	@Test
-	public void testPaging(){
+	public void testSearchTotal(){
 		Criteria cri = new Criteria();
-		//5개씩 3페이지
-		cri.setPageNum(3);
-		cri.setAmount(5);
-		List<ResultDAO> list = staffMapper.getListWithPaging(cri);
-		list.forEach(staff -> log.info(staff));
+		cri.setIsSkill("N");
+//		cri.setType("NJ");
+		cri.setType("N");
+		cri.setKeyword("조");
+//		cri.setSex("1");
+		cri.setSkill("5");
+		log.info(cri.getIsSkill());
+		log.info(staffMapper.getTotal(cri));
 	}
 }

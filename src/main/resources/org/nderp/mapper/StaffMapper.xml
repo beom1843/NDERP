@@ -70,16 +70,102 @@
 			(
 			select 
 			rownum rn, staff_no, staff_name, jumin_no,department_code dept, graduate_day
-			from staff
-			where rownum<=#{pageNum} * #{amount}
+			from
+			 ]]>
+			 
+
+			 <foreach collection="isSkillArr" item="isSkill">
+			 <choose>
+				 <when test ="isSkill=='Y'.toString()">
+				  (
+					select *
+						from staff
+						where staff_no in(
+							select distinct staff_no
+							from staff_skill
+							where Skill_Code in 
+							<foreach collection="skillArr" item="skill" open="(" separator="," close=")">
+							#{skill}
+							</foreach>
+							))
+				 </when>
+				 <otherwise>
+				 (staff)
+				 </otherwise>
+			 </choose>
+			 </foreach>
+			where 
+			<foreach collection="typeArr" item="type">
+			<trim prefix ="(" suffix=") AND" >
+			 	<if test="type=='N'.toString()">
+			 	staff_name like '%'||#{keyword}||'%'
+			 	</if>
+			 	<if test="type=='J'.toString()">
+			 	substr(jumin_no,8,1) = #{sex}
+			 	</if>
+			 	<if test="type=='D'.toString()">
+			 	department_code = #{dept}
+			 	</if>
+			 </trim>
+			 </foreach>
+			 
+			 
+			<![CDATA[ 
+			rownum<=#{pageNum} * #{amount}
 			)
 			where rn> (#{pageNum}-1)* #{amount}
 		]]>
 	</select>
 	
 	<select id="getTotal" resultType = "Integer">
-		select max(rownum)
-			from staff
+			<![CDATA[ 
+		select max(rn)
+			from
+			(
+			select 
+			rownum rn, staff_no, staff_name, jumin_no,department_code dept, graduate_day
+			from
+			]]>
+			 <foreach collection="isSkillArr" item="isSkill">
+			 <choose>
+				 <when test ="isSkill=='Y'.toString()">
+				  (
+					select *
+						from staff
+						where staff_no in(
+							select distinct staff_no
+							from staff_skill
+							where Skill_Code in 
+							<foreach collection="skillArr" item="skill" open="(" separator="," close=")">
+							#{skill}
+							</foreach>
+							))
+				 </when>
+				 <otherwise>
+				 (staff)
+				 </otherwise>
+			 </choose>
+			 </foreach>
+			 			<![CDATA[ 
+			where 
+						]]>
+		<foreach collection="typeArr" item="type">
+			<trim prefix ="(" suffix=") AND" >
+			 	<if test="type=='N'.toString()">
+			 	staff_name like '%'||#{keyword}||'%'
+			 	</if>
+			 	<if test="type=='J'.toString()">
+			 	substr(jumin_no,8,1) = #{sex}
+			 	</if>
+			 	<if test="type=='D'.toString()">
+			 	department_code = #{dept}
+			 	</if>
+			 </trim>
+			 </foreach>
+			<![CDATA[ 
+			staff_no>0
+			)
+		]]>
 	</select>
 	
 </mapper>
