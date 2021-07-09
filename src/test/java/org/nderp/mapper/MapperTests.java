@@ -101,13 +101,13 @@ public class MapperTests {
 	@Test
 	public void testSearchTotal(){
 		Criteria cri = new Criteria();
-		cri.setIsSkill("N");
-//		cri.setType("NJ");
-		cri.setType("N");
+		cri.setIsSkill("P");
+		cri.setType("NS");
+//		cri.setType("N");
 		cri.setKeyword("조");
-//		cri.setSex("1");
-		cri.setSkill("5");
-		log.info(cri.getIsSkill());
+		cri.setEdu("1");
+//		cri.setSkill("5");
+//		log.info(cri.getIsSkill());
 		log.info(staffMapper.getTotal(cri));
 	}
 }

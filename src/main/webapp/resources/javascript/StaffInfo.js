@@ -143,7 +143,66 @@ var staffInfoService=(function(){
 		});
 	}
 	
-	
+//	function search(data, callback, error){
+//		$.ajax({
+//			type: 'put',
+//			url: '/criteria',
+//			data: JSON.stringify(data),
+//			contentType: "application/json; charset=utf-8",
+//			success : function(result, status, xhr){
+//				if(callback){
+//					console.log(callback);
+//					callback(result);
+//				}
+//			},
+//			error:function(xhr, status, er){
+//				if(error){
+//					error(er)
+//				}
+//			}
+//		});
+//	}
+	function search(data, callback, error){
+		console.log("wrapper..........");
+	$.ajax({
+		type: 'post',
+		url: '/search',
+		data: JSON.stringify(data),
+		contentType: "application/json; charset=utf-8",
+		success: function(result, status, xhr){
+			if(callback){
+				callback(result);
+			}
+		},
+		error: function(xhr, status, er){
+		console.log("========search_error========")
+			if(error){
+				error(er);
+			}
+		}	
+		})
+	}/*search 함수 끝*/
+	function getPage(data, callback, error){
+		console.log("wrapper..........");
+	$.ajax({
+		type: 'post',
+		url: '/page',
+		data: JSON.stringify(data),
+		contentType: "application/json; charset=utf-8",
+		success: function(result, status, xhr){
+			if(callback){
+				callback(result);
+			}
+		},
+		error: function(xhr, status, er){
+		console.log("========page_error========")
+			if(error){
+				error(er);
+			}
+		}	
+		})
+	}/*add 함수 끝*/
+
 	
 	return{
 		getDept:getDept,
@@ -154,7 +213,9 @@ var staffInfoService=(function(){
 		update:update,
 		remove:remove,
 		getList:getList,
-		paginate:paginate
+		paginate:paginate,
+		search:search,
+		getPage:getPage
 	}
 })
 ()

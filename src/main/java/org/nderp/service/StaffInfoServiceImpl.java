@@ -94,7 +94,14 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 
 	@Override
 	public List<ResultDAO> listStaff(Criteria cri) {
-		
+	log.info("Service-_Search............................");
+		if (cri.getSex()=="M"){
+			cri.setSex("13");
+		}else if(cri.getSex()=="F"){
+			cri.setSex("24");
+		}else if(cri.getSex()=="MF"){
+			cri.setSex("1234");
+		}
 		return staffMapper.getListWithPaging(cri);
 	}
 

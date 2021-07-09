@@ -27,8 +27,8 @@ public class PageController {
 	}
 	
 	@GetMapping("/staff_search_form")
-	public void search(Criteria cri, Model model){
-		model.addAttribute("pageMaker",new PageDTO(cri,123));
+	public void search(){
+		
 	}
 	
 	@GetMapping("/staff_updel_form")

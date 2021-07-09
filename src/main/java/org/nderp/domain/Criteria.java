@@ -19,11 +19,15 @@ public class Criteria {
 	private int dept;
 	private String edu;
 	private String skill;
+	
+	//Y일 때 기술스택을 검색함
 	private String isSkill;
+	
 	private String gDate;
 	
 	public Criteria(){
 		this(1,5);
+		this.isSkill="P";
 	}
 	
 	public Criteria(int pageNum, int amount){
@@ -45,5 +49,9 @@ public class Criteria {
 	
 	public String[] getIsSkillArr(){
 		return isSkill == null? new String[] {}: isSkill.split("");
+	}
+	
+	public String[] getSexArr(){
+		return sex == null? new String[] {}: sex.split("");
 	}
 }

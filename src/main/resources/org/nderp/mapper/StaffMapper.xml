@@ -155,10 +155,19 @@
 			 	staff_name like '%'||#{keyword}||'%'
 			 	</if>
 			 	<if test="type=='J'.toString()">
-			 	substr(jumin_no,8,1) = #{sex}
+			 	substr(jumin_no,8,1) = 
+				 	<foreach collection="sexArr" item="sex" open="(" separator="," close=")">
+				 	#{sex}
+				 	</foreach>
 			 	</if>
 			 	<if test="type=='D'.toString()">
 			 	department_code = #{dept}
+			 	</if>
+			 	<if test="type=='S'.toString()">
+			 	school_code in 
+			 	<foreach collection="eduArr" item="edu" open="(" separator="," close=")">
+			 	#{edu}
+			 	</foreach>
 			 	</if>
 			 </trim>
 			 </foreach>

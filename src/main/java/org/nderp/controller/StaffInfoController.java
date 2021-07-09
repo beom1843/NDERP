@@ -108,6 +108,7 @@ public class StaffInfoController {
 		
 		Criteria cri = new Criteria();
 		cri.setAmount(5);
+		cri.setIsSkill("P");
 		cri.setPageNum(pageNum);
 		
 		return new ResponseEntity<List<ResultDAO>>(service.listStaff(cri),HttpStatus.OK);
@@ -119,9 +120,9 @@ public class StaffInfoController {
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<PageDTO> pageIdx(@PathVariable("pageNum") int pageNum){
 		
-		
 		Criteria cri = new Criteria();
 		cri.setAmount(5);
+	
 		cri.setPageNum(pageNum);
 		int size = service.getTotal(cri);
 		log.info(size);
@@ -129,5 +130,38 @@ public class StaffInfoController {
 		
 		return new ResponseEntity<PageDTO>(pageMaker,HttpStatus.OK);
 	}
-
+	
+//	@RequestMapping(method={RequestMethod.PUT, RequestMethod.PATCH},
+//			value="/criteria",
+//			consumes="application/json",
+//			produces={MediaType.APPLICATION_XML_VALUE,
+//					MediaType.APPLICATION_JSON_UTF8_VALUE})
+//	public ResponseEntity<List<ResultDAO>> searchStaff(@RequestBody Criteria cri){
+//		
+//		return new ResponseEntity<List<ResultDAO>>(service.listStaff(cri),HttpStatus.OK);
+//	}
+	
+	@PostMapping(value="/search",
+			consumes = "application/json",
+			produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<ResultDAO>> searchStaff(@RequestBody Criteria cri){
+		
+		return new ResponseEntity<List<ResultDAO>>(service.listStaff(cri),HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/page",
+			consumes = "application/json",
+			produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<PageDTO> getPage(@RequestBody Criteria cri){
+		cri.setAmount(5);
+		
+		int size = service.getTotal(cri);
+		log.info(size);
+		PageDTO pageMaker = new PageDTO(cri,size);
+		
+		return new ResponseEntity<PageDTO>(pageMaker,HttpStatus.OK);
+	}
+	
 }

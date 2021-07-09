@@ -28,8 +28,8 @@
 			<td><input type="text" id="name" name="name"></td>
 			<th>성별</th>
 			<td>
-			<input type='checkbox' id='sex' name='sex' onclick ='checkOnlyOneX(this)' value="M">남
-			<input type='checkbox' id='sex' name='sex' onclick ='checkOnlyOneX(this)' value="F">여
+			<input type='checkbox' id='sex' name='sex'  value="M">남
+			<input type='checkbox' id='sex' name='sex'  value="F">여
 			</td>
 			<th>부서</th>
 			<td>
