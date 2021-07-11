@@ -31,7 +31,7 @@ $(document).ready(function(){
 
 		$('#dept_code').val(staff.department_code).prop('selected',true);
 		
-		$('input:radio[name=education]:input[value=' + staff.school_code + ']').attr("checked", true);
+		$('input:checkbox[name=education]:input[value=' + staff.school_code + ']').attr("checked", true);
 		
 		var s_list=staff.skill_list;
 		

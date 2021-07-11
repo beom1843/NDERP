@@ -115,53 +115,7 @@ var staffInfoService=(function(){
 		});
 	}
 	
-	function getList(param,callback, error){
-		var pageNum = param.pageNum;
-		$.getJSON("/list/"+pageNum+".json", 
-				function(data){
-			if(callback){
-				callback(data);
-			}
-		}).fail(function(xhr,status,err){
-			if(error){
-				error();
-			}
-		});
-	}
-	
-	function paginate(param,callback,error){
-		var pageNum = param.pageNum;
-		$.getJSON("/pageIdx/"+pageNum+".json",
-				function(data){
-			if(callback){
-				callback(data);
-			}
-		}).fail(function(xrh,status,err){
-			if(error){
-				error();
-			}
-		});
-	}
-	
-//	function search(data, callback, error){
-//		$.ajax({
-//			type: 'put',
-//			url: '/criteria',
-//			data: JSON.stringify(data),
-//			contentType: "application/json; charset=utf-8",
-//			success : function(result, status, xhr){
-//				if(callback){
-//					console.log(callback);
-//					callback(result);
-//				}
-//			},
-//			error:function(xhr, status, er){
-//				if(error){
-//					error(er)
-//				}
-//			}
-//		});
-//	}
+
 	function search(data, callback, error){
 		console.log("wrapper..........");
 	$.ajax({
@@ -212,8 +166,6 @@ var staffInfoService=(function(){
 		get:get,
 		update:update,
 		remove:remove,
-		getList:getList,
-		paginate:paginate,
 		search:search,
 		getPage:getPage
 	}

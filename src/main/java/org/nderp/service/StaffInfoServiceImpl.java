@@ -107,8 +107,12 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 
 	@Override
 	public int getTotal(Criteria cri) {
-
-		return staffMapper.getTotal(cri);
+		
+		if(staffMapper.getTotal(cri)==0){
+			return 0;
+		}else{
+			return staffMapper.getTotal(cri);	
+		}
 	}
 	
 	

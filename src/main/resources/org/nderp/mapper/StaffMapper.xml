@@ -106,6 +106,12 @@
 			 	<if test="type=='D'.toString()">
 			 	department_code = #{dept}
 			 	</if>
+			 	<if test="type=='S'.toString()">
+			 	school_code in 
+			 	<foreach collection="eduArr" item="edu" open="(" separator="," close=")">
+			 	#{edu}
+			 	</foreach>
+			 	</if>
 			 </trim>
 			 </foreach>
 			 
