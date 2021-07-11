@@ -83,8 +83,12 @@
 	
 	<!-- Setting.js -->
 	<script src="/resources/javascript/setting.js"></script>
+	<script>
+
+	</script>
 	<!-- Search.js -->
 	<script src="/resources/javascript/search.js"></script>	
+
 
 </body>
 </html>

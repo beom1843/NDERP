@@ -99,7 +99,7 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 			cri.setSex("13");
 		}else if(cri.getSex()=="F"){
 			cri.setSex("24");
-		}else if(cri.getSex()=="MF"){
+		}else if(cri.getSex()=="MF"||cri.getSex()=="FM"){
 			cri.setSex("1234");
 		}
 		return staffMapper.getListWithPaging(cri);

@@ -80,7 +80,8 @@
 		}//setDateBox 끝
 		
 	window.checkOnlyOne=function(element){
-		  const checkboxes 
+		if(!window.location.href=="http://localhost:8081/staff_search_form"){
+			const checkboxes 
 		      = document.getElementsByName("education");
 
 		  checkboxes.forEach((cb) => {
@@ -88,6 +89,10 @@
 		  })
 
 		  element.checked = true;
-		}
 		
+		}else{
+			return null;
+		}
+	}
+
 })
