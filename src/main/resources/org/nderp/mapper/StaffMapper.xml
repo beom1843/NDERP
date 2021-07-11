@@ -101,7 +101,10 @@
 			 	staff_name like '%'||#{keyword}||'%'
 			 	</if>
 			 	<if test="type=='J'.toString()">
-			 	substr(jumin_no,8,1) = #{sex}
+			 	substr(jumin_no,8,1) in
+			 	<foreach collection="sexArr" item="sex" open="(" separator="," close=")">
+			 	 #{sex}
+			 	 </foreach>
 			 	</if>
 			 	<if test="type=='D'.toString()">
 			 	department_code = #{dept}
@@ -111,6 +114,13 @@
 			 	<foreach collection="eduArr" item="edu" open="(" separator="," close=")">
 			 	#{edu}
 			 	</foreach>
+			 	</if>
+			 	<if test="type=='G'.toString()">
+			 	<![CDATA[ 
+				to_timestamp(substr(graduate_day,1,4)||substr(graduate_day,6,2)||substr(graduate_day,9,2),'YYYYMMDD')
+				
+				between	to_timestamp(#{year1}||#{month1}||#{day1},'YYYYMMDD') and to_timestamp(#{year2}||#{month2}||#{day2},'YYYYMMDD')
+			 	]]>
 			 	</if>
 			 </trim>
 			 </foreach>
@@ -129,7 +139,8 @@
 			from
 			(
 			select 
-			rownum rn, staff_no, staff_name, jumin_no,department_code dept, graduate_day
+			rownum rn, staff_no, staff_name, jumin_no,department_code dept,
+			graduate_day
 			from
 			]]>
 			 <foreach collection="isSkillArr" item="isSkill">
@@ -161,10 +172,10 @@
 			 	staff_name like '%'||#{keyword}||'%'
 			 	</if>
 			 	<if test="type=='J'.toString()">
-			 	substr(jumin_no,8,1) = 
-				 	<foreach collection="sexArr" item="sex" open="(" separator="," close=")">
-				 	#{sex}
-				 	</foreach>
+			 	substr(jumin_no,8,1) in
+			 	<foreach collection="sexArr" item="sex" open="(" separator="," close=")">
+			 	 #{sex}
+			 	 </foreach>
 			 	</if>
 			 	<if test="type=='D'.toString()">
 			 	department_code = #{dept}
@@ -174,6 +185,13 @@
 			 	<foreach collection="eduArr" item="edu" open="(" separator="," close=")">
 			 	#{edu}
 			 	</foreach>
+			 	</if>
+			 	<if test="type=='G'.toString()">
+			 	<![CDATA[ 
+				to_timestamp(substr(graduate_day,1,4)||substr(graduate_day,6,2)||substr(graduate_day,9,2),'YYYYMMDD')
+				
+				between	to_timestamp(#{year1}||#{month1}||#{day1},'YYYYMMDD') and to_timestamp(#{year2}||#{month2}||#{day2},'YYYYMMDD')
+			 	]]>
 			 	</if>
 			 </trim>
 			 </foreach>

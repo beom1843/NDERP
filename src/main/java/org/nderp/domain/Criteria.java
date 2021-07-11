@@ -23,7 +23,13 @@ public class Criteria {
 	//Y일 때 기술스택을 검색함
 	private String isSkill;
 	
-	private String gDate;
+	private String year1;
+	private String month1;
+	private String day1;
+	
+	private String year2;
+	private String month2;
+	private String day2;
 	
 	public Criteria(){
 		this(1,5);

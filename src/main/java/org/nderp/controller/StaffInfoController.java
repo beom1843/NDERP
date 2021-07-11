@@ -157,6 +157,7 @@ public class StaffInfoController {
 	public ResponseEntity<PageDTO> getPage(@RequestBody Criteria cri){
 		cri.setAmount(5);
 		
+		log.info("skill---------------"+cri.getSkill());
 		int size = service.getTotal(cri);
 		log.info(size);
 		PageDTO pageMaker = new PageDTO(cri,size);
