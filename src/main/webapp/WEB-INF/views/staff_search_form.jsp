@@ -79,7 +79,6 @@
 	<div class="total"></div>
 	<div class="result"></div>
 	<div class="pagination"></div>
-	<div class="pageNum"></div>
 	
 	<!-- Setting.js -->
 	<script src="/resources/javascript/setting.js"></script>
