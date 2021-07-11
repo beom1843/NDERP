@@ -81,7 +81,8 @@ $(document).ready(function(){
 			skill_list:s_List
 		},
 		function(result){
-			alert("RESULT:"+result)
+			alert(result+": 수정되었습니다!")
+			window.open("about:blank","_self").close();
 		});
 	}))// update 버튼 클릭 이벤트
 	
@@ -95,7 +96,8 @@ $(document).ready(function(){
 				staff_no:s_no
 			},
 			function(result){
-				alert(result)
+				alert(result+":삭제되었습니다!")
+				window.open("about:blank","_self").close();
 			})
 		}
 		

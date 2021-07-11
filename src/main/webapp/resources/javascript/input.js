@@ -57,7 +57,7 @@ $(document).ready(function(){
 				message += "**정확한 주민등록번호를 입력해주세요.**\n"
 				isAllOK+=1;
 			}
-			if(!(name&sch_code&dpt_code&!(g_day=="년도-0월-0일")&!(j=="-")&!(s_List.length==0))){
+			if(!(name&&sch_code&&dpt_code&&!(g_day=="년도-0월-0일")&&!(j=="-")&&!(s_List.length==0))){
 				message += "**[미입력 사항]** \n"
 				isAllOK+=1;
 			}
@@ -91,7 +91,8 @@ $(document).ready(function(){
 					skill_list:s_List
 				},
 				function(result){
-					alert("RESULT:"+result)
+					alert(result+": 등록되었습니다!")
+					window.open("about:blank","_self").close();
 				});
 			}
 			

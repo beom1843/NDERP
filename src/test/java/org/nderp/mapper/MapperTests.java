@@ -34,17 +34,17 @@ public class MapperTests {
 //		log.info(mapper.getDept());
 //	}
 	
-//	@Test
-//	public void testInsert(){
-//		Staff staff = new Staff();
-//		staff.setDepartment_code(1);
-//		staff.setGraduate_day("2012-07-15");
-//		staff.setJumin_no("921015-2000000");
-//		staff.setStaff_name("조길동");
-//		staff.setSchool_code(2);
-//		
-//		log.info(staffMapper.insert(staff));
-//	}
+	@Test
+	public void testInsert(){
+		Staff staff = new Staff();
+		staff.setDepartment_code(1);
+		staff.setGraduate_day("2012-07-15");
+		staff.setJumin_no("921015-2000000");
+		staff.setStaff_name("조길동");
+		staff.setSchool_code(2);
+		
+		log.info(staffMapper.insert(staff));
+	}
 
 //	@Test
 //	public void testDelete(){
@@ -98,16 +98,16 @@ public class MapperTests {
 //		list.forEach(b -> log.info(b));
 //	}
 	
-	@Test
-	public void testSearchTotal(){
-		Criteria cri = new Criteria();
-		cri.setIsSkill("P");
-		cri.setType("NS");
-//		cri.setType("N");
-		cri.setKeyword("조");
-		cri.setEdu("1");
-//		cri.setSkill("5");
-//		log.info(cri.getIsSkill());
-		log.info(staffMapper.getTotal(cri));
-	}
+//	@Test
+//	public void testSearchTotal(){
+//		Criteria cri = new Criteria();
+//		cri.setIsSkill("P");
+//		cri.setType("NS");
+////		cri.setType("N");
+//		cri.setKeyword("조");
+//		cri.setEdu("1");
+////		cri.setSkill("5");
+////		log.info(cri.getIsSkill());
+//		log.info(staffMapper.getTotal(cri));
+//	}
 }
