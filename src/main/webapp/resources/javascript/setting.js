@@ -3,6 +3,8 @@
 		var DeptDropdown = $(".dept_dropdown");
 		var EduRadio = $(".education_radio");
 		var SkillChk=$(".skill_checkbox");
+		var SkillAdd=$(".skill_added");
+		var SkillHidden=$(".hidden_skill");
 		
 		getCode();
 		function getCode(){
@@ -37,12 +39,25 @@
 			staffInfoService.getSkill(
 					function(skillList){
 						var str = "";
+						var str1="";
 						if(skillList == null || skillList.length ==0){ }
-						for(var i=0, len=skillList.length||0;i<len;i++){
+						for(var i=0, len=5||0;i<len;i++){
 						str +="<input type='checkbox' id='skillList' name='skillList' value='"+skillList[i].skill_code+"' />";
 						str += skillList[i].skill_name;
 						}
 						SkillChk.html(str);
+						if(!window.location.href=="http://localhost:8081/staff_search_form"){
+						for(var i=5,len=skillList.length;i<len;i++){
+						str1 +="<input type='checkbox' id='skillList' name='skillList' value='"+skillList[i].skill_code+"' />";
+						str1 += skillList[i].skill_name;
+						}
+						SkillAdd.html(str1);
+						}else{
+						for(var i=5,len=skillList.length;i<len;i++){
+						str1 +="<input type='hidden' id='"+skillList[i].skill_name+"' name='skillList' value='"+skillList[i].skill_code+"' />";
+						}
+						SkillHidden.html(str1);
+						}
 					})
 			
 		}//getCode, 코드불러오기 끝

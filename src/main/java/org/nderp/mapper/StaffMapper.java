@@ -21,4 +21,9 @@ public interface StaffMapper {
 	public int deleteSkill(int staff_no);
 	public int updateSkill(HashMap<String,Integer> staff_skill);
 	public int[] getSkill(int staff_no);
+	
+	public int insertAddSkill(String skill_added);
+	public int deleteAddSkill(int staff_no);
+	public int updateAddSkill(HashMap<String, String> add_staff_skill);
+	public String[] getAddSkill(int staff_no);
 }

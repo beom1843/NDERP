@@ -18,6 +18,7 @@
 	
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css"	href="/resources/css/table.css" />
+	<link rel="stylesheet" type="text/css"	href="/resources/css/input.css" />
 
 
 </head>
@@ -58,12 +59,19 @@
 
 		<tr>
 			<th>졸업일</th>
-			<td colspan="5">
+			<td>
 				<select class="year" id="year1" title="년도"	></select>년 
 				<select class="month" id="month1" title="월" ></select>월 
 				<select	class="day" id="day1" title="일" ></select>일
 			</td>
+			<th>추가 기술</th>
+			<td colspan="5">
+				<div class="skill_added">
+				</div>
+			</td>
 		</tr>
+
+		
 	</table>
 	
 <button id="submit" value="등록">등록</button>

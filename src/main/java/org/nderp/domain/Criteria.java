@@ -23,6 +23,9 @@ public class Criteria {
 	//Y일 때 기술스택을 검색함
 	private String isSkill;
 	
+	//A일 때 추가기술을 AND조건으로 검색함
+	private String isAdd;
+	
 	private String year1;
 	private String month1;
 	private String day1;

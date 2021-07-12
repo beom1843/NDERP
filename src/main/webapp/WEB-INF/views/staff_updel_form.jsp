@@ -58,10 +58,15 @@
 
 		<tr>
 			<th>졸업일</th>
+			<td>
+				<select class="year" id="year1" title="년도"	></select>년 
+				<select class="month" id="month1" title="월" ></select>월 
+				<select	class="day" id="day1" title="일" ></select>일
+			</td>
+			<th>추가 기술</th>
 			<td colspan="5">
-				<select class="year" id="year1" title="년도"	class="custom-select "></select>년 
-				<select class="month" id="month1" title="월" class="custom-select "></select>월 
-				<select	class="day" id="day1" title="일" class="custom-select "></select>일
+				<div class="skill_added">
+				</div>
 			</td>
 		</tr>
 	</table>

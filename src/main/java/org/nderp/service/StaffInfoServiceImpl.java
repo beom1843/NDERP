@@ -52,7 +52,8 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 			log.info(skill_code);
 			staffMapper.insertSkill(skill_code);
 		}
-		
+
+
 		return re;
 	}
 
@@ -60,6 +61,7 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 	public int deleteStaff(int staffNo) {
 		int re = staffMapper.deleteSkill(staffNo);
 		re += staffMapper.delete(staffNo);
+
 		return re;
 	}
 
@@ -79,6 +81,7 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 			staff_skill.put("staff_no", staff_no);
 			staffMapper.updateSkill(staff_skill);
 		}
+		
 		
 		int re = staffMapper.update(staff);
 		return re;

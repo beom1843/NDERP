@@ -68,6 +68,16 @@
 				<select	class="day" id="day2" title="일"></select>일		
 			</td>
 		</tr>
+		
+		<tr>
+			<th>추가 기술</th>
+			<td colspan="5">
+						<div class="hidden_skill"></div>
+				<input type="text" id="addSkill" name="addSkill">
+				<input type="checkbox" id="and" name="addMethod" onclick="checkOnlyOneM(this)"/>AND
+				<input type="checkbox" id="or" name="addMethod" onclick="checkOnlyOneM(this)"/>OR
+			</td>
+		</tr>
 	</table>
 	
 	<button id="search" value="검색">검색</button>
@@ -83,7 +93,8 @@
 	<!-- Setting.js -->
 	<script src="/resources/javascript/setting.js"></script>
 	<script>
-
+	
+	
 	</script>
 	<!-- Search.js -->
 	<script src="/resources/javascript/search.js"></script>	

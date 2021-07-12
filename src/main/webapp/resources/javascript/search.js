@@ -33,10 +33,13 @@ console.log(window.location.href);
 				school_List += $(this).val();
 			})
 			var dpt_code= $("select[name='dept_code']").val();
+			
+			
 			var s_List = "";
 			$("input[name='skillList']:checked").each(function(i){
 				s_List += $(this).val();
 			})
+			
 			
 			var y = document.getElementById("year1");
 			var grad_y1 = y.options[y.selectedIndex].text*1; 
@@ -210,6 +213,18 @@ console.log(window.location.href);
 	window.movePage = function(pageNum){
 		var page= pageNum;
 		search(page);
+	}
+	
+	window.checkOnlyOneM=function(element){
+			const checkboxes 
+		      = document.getElementsByName("addMethod");
+
+		  checkboxes.forEach((cb) => {
+		    cb.checked=false;
+		  })
+
+		  element.checked=true;
+		
 	}
 	
 	
