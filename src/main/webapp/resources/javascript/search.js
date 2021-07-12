@@ -42,16 +42,26 @@ console.log(window.location.href);
 			//문자열로 입력받은 기술 > skillList2의 id값과 비교해야함
 			var addSkill= $("input[name='addSkill']").val();
 			addSkill=addSkill.toLowerCase();
-			
-			//skillList2를 받을 map 리스트
+			var addSkillCode="";
+			//skillList2를 받을 리스트
 			var Skill_List2=[];
 
+			
 			$("input[name='skillList2']").each(function(i){
 				Skill_List2.push($(this).val());
 			})
 			
 			console.log(Skill_List2);
-
+			//Skill_List2의 값을 split("-")로 쪼개, 배열의 1번(lowercase)과 비교후 0번을 가져옴
+			for(var i = 0 ; i<Skill_List2.length;i++){
+				var strSkill = Skill_List2[i].split('-');
+				strSkill[1]=strSkill[1].toLowerCase();
+				if(addSkill==strSkill[1]){
+					addSkillCode=strSkill[0];
+				}
+			}
+			console.log("과연값을잘받아왔을지?"+addSkillCode);
+			
 			
 			$("input[name='skillList']:checked").each(function(i){
 				s_List += $(this).val();
