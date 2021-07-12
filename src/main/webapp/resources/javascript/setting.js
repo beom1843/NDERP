@@ -54,7 +54,7 @@
 						SkillAdd.html(str1);
 						}else{
 						for(var i=5,len=skillList.length;i<len;i++){
-						str1 +="<input type='hidden' id='"+skillList[i].skill_name+"' name='skillList' value='"+skillList[i].skill_code+"' />";
+						str1 +="<input type='hidden' name='skillList2' value='"+skillList[i].skill_code+"-"+skillList[i].skill_name+"' />";
 						}
 						SkillHidden.html(str1);
 						}

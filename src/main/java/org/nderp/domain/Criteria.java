@@ -25,6 +25,8 @@ public class Criteria {
 	
 	//A일 때 추가기술을 AND조건으로 검색함
 	private String isAdd;
+	//and 조건일 경우 추가기술 코드를 받아옴
+	private String add;
 	
 	private String year1;
 	private String month1;

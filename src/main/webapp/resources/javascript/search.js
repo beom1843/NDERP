@@ -36,10 +36,26 @@ console.log(window.location.href);
 			
 			
 			var s_List = "";
+			var a_List = "";
+			var addMethod=$("select[name='add_method']").val();
+			
+			//문자열로 입력받은 기술 > skillList2의 id값과 비교해야함
+			var addSkill= $("input[name='addSkill']").val();
+			addSkill=addSkill.toLowerCase();
+			
+			//skillList2를 받을 map 리스트
+			var Skill_List2=[];
+
+			$("input[name='skillList2']").each(function(i){
+				Skill_List2.push($(this).val());
+			})
+			
+			console.log(Skill_List2);
+
+			
 			$("input[name='skillList']:checked").each(function(i){
 				s_List += $(this).val();
 			})
-			
 			
 			var y = document.getElementById("year1");
 			var grad_y1 = y.options[y.selectedIndex].text*1; 
