@@ -67,6 +67,7 @@
 	<select id="getListWithPaging" resultType = "org.nderp.domain.ResultDAO">
 		<![CDATA[
 		select
+
 			rn, staff_no, staff_name, substr(jumin_no,8,1) sex, 
 			(select department_name
 			from code_department
@@ -74,23 +75,25 @@
 			from
 			(
 			select 
+					/*+ INDEX_DESC(staff SYS_C007487) */
 			rownum rn, staff_no, staff_name, jumin_no,department_code dept, graduate_day
 			from
 			 ]]>
 			 
 
 			 <foreach collection="isSkillArr" item="isSkill">
+			 <foreach collection="isAddArr" item="isAdd">
 			 <choose>
 				 <when test ="isSkill=='Y'.toString()">
 				  (
 					select *
+							/*+ INDEX_DESC(staff SYS_C007487) */
 						from staff
 						where staff_no in(
 							select distinct staff_no
-							from 
-						<foreach collection="isAddArr" item="isAdd">
-						<choose>
-							<when test = "isAdd=='A'.toString()">
+							from staff_skill
+							<if test = "isAdd=='A'.toString()">
+							where staff_no in
 								(select staff_no
 									from staff_Skill
 									group by staff_no
@@ -99,12 +102,7 @@
  									#{add}
 								</foreach>
 								)
-							</when>
-							<otherwise>
-								staff_skill
-							</otherwise>
-						</choose>
-						</foreach>
+							</if>
 							where Skill_Code in 
 							<foreach collection="skillArr" item="skill" open="(" separator="," close=")">
 							#{skill}
@@ -112,8 +110,9 @@
 							))
 				 </when>
 				 <otherwise>
-				 <choose>
-				 	<when test = "isAdd=='A'.toString()">
+				 	staff
+				 	<if test = "isAdd=='A'.toString()">
+				 	where staff_no in
 				 	(select staff_no
 							from staff_Skill
 							group by staff_no
@@ -122,13 +121,11 @@
 								#{add}
 						</foreach>
 						)
-				 	</when>
-				 	<otherwise>
-				 	(staff)
-				 	</otherwise>
-				 </choose>
+				 	</if>
+
 				 </otherwise>
 			 </choose>
+			 </foreach>
 			 </foreach>
 			where 
 			<foreach collection="typeArr" item="type">
@@ -160,8 +157,6 @@
 			 	</if>
 			 </trim>
 			 </foreach>
-			 
-			 
 			<![CDATA[ 
 			rownum<=#{pageNum} * #{amount}
 			)

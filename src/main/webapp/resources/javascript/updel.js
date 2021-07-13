@@ -37,7 +37,8 @@ $(document).ready(function(){
 		
 		 for (var skill_code  in s_list) {
              $("input[name=skillList][value="+s_list[skill_code]+"]").prop("checked",true);
-			 }    
+			 }
+
 		
 	})// Staff 정보 불러오기 끝
 	

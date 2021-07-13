@@ -74,8 +74,8 @@
 			<td colspan="5">
 						<div class="hidden_skill"></div>
 				<input type="text" id="addSkill" name="addSkill">
-				<input type="checkbox" id="and" name="add_method" onclick="checkOnlyOneM(this)"/>AND
-				<input type="checkbox" id="or" name="add_method" onclick="checkOnlyOneM(this)"/>OR
+				<input type="checkbox" value="and" name="add_method" onclick="checkOnlyOneM(this)"/>AND
+				<input type="checkbox" value="or" name="add_method" onclick="checkOnlyOneM(this)"/>OR
 			</td>
 		</tr>
 	</table>

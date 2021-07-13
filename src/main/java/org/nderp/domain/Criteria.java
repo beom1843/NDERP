@@ -65,4 +65,11 @@ public class Criteria {
 	public String[] getSexArr(){
 		return sex == null? new String[] {}: sex.split("");
 	}
+	
+	public String[] getIsAddArr(){
+		return isAdd == null? new String[] {}: isAdd.split("");
+	}
+	public String[] getAddArr(){
+		return add ==null? new String[] {} : add.split("");
+	}
 }

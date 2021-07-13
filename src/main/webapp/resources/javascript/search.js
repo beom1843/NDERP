@@ -37,7 +37,7 @@ console.log(window.location.href);
 			
 			var s_List = "";
 			var a_List = "";
-			var addMethod=$("select[name='add_method']").val();
+
 			
 			//문자열로 입력받은 기술 > skillList2의 id값과 비교해야함
 			var addSkill= $("input[name='addSkill']").val();
@@ -62,11 +62,28 @@ console.log(window.location.href);
 			}
 			console.log("과연값을잘받아왔을지?"+addSkillCode);
 			
+
+			
 			
 			$("input[name='skillList']:checked").each(function(i){
 				s_List += $(this).val();
 			})
 			
+			//addMethod의 값이 or이라면 skillList에 추가, and라면 Criteria의 add 변수에 담기
+			var add="";
+			var isAdd="N";
+			var addMethod=$("input[name='add_method']:checked").val();
+			if(addMethod=="or"){
+				isAdd="O";
+				s_List += addSkillCode;
+			}else if(addMethod=="and"){
+				add=addSkillCode;
+				isAdd="A";
+			}
+			console.log(addMethod);
+			console.log("isAdd==========="+isAdd);
+			console.log("add-==============="+add);
+			console.log("addSkillCode========="+addSkillCode);
 			var y = document.getElementById("year1");
 			var grad_y1 = y.options[y.selectedIndex].text*1; 
 			var m = document.getElementById("month1");
@@ -101,7 +118,6 @@ console.log(window.location.href);
 				var m_=grad_m2
 				grad_m2="0"+m_;
 			}
-			console.log(grad_m1);
 
 			
 			var g_day1 = grad_y1+"-"+grad_m1+"-"+grad_d1;
@@ -148,7 +164,9 @@ console.log(window.location.href);
 				day1:grad_d1,
 				year2:grad_y2,
 				month2:grad_m2,
-				day2:grad_d2
+				day2:grad_d2,
+				isAdd:isAdd,
+				add:add
 			},
 			function(pageMaker){
 				if(pageMaker.prev){
@@ -184,7 +202,9 @@ console.log(window.location.href);
 				day1:grad_d1,
 				year2:grad_y2,
 				month2:grad_m2,
-				day2:grad_d2
+				day2:grad_d2,
+				isAdd:isAdd,
+				add:add
 			},
 			function(list){
 				if(list == null || list.length ==0){ }
@@ -242,16 +262,14 @@ console.log(window.location.href);
 	}
 	
 	window.checkOnlyOneM=function(element){
-			const checkboxes 
-		      = document.getElementsByName("addMethod");
+		const checkboxes 
+	      = document.getElementsByName("add_method");
 
-		  checkboxes.forEach((cb) => {
-		    cb.checked=false;
-		  })
-
-		  element.checked=true;
-		
-	}
+	  checkboxes.forEach((cb) => {
+	    cb.checked=false;
+	  })
+	  element.checked=true;
+}
 	
 	
 		

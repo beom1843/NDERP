@@ -46,8 +46,9 @@
 						str += skillList[i].skill_name;
 						}
 						SkillChk.html(str);
-						if(!window.location.href=="http://localhost:8081/staff_search_form"){
+						if(!(window.location.href=="http://localhost:8081/staff_search_form")){
 						for(var i=5,len=skillList.length;i<len;i++){
+							console.log("inside js Module--------"+skillList[i].skill_name)
 						str1 +="<input type='checkbox' id='skillList' name='skillList' value='"+skillList[i].skill_code+"' />";
 						str1 += skillList[i].skill_name;
 						}
@@ -95,7 +96,7 @@
 		}//setDateBox 끝
 		
 	window.checkOnlyOne=function(element){
-		if(!window.location.href=="http://localhost:8081/staff_search_form"){
+		if(!(window.location.href=="http://localhost:8081/staff_search_form")){
 			const checkboxes 
 		      = document.getElementsByName("education");
 
@@ -110,4 +111,8 @@
 		}
 	}
 
+
+	
+	
+	
 })

@@ -73,15 +73,15 @@ public class MapperTests {
 //		
 //	}
 	
-//	@Test
-//	public void testPaging(){
-//		Criteria cri = new Criteria();
-//		//5개씩 3페이지
-//		cri.setPageNum(3);
-//		cri.setAmount(5);
-//		List<ResultDAO> list = staffMapper.getListWithPaging(cri);
-//		list.forEach(staff -> log.info(staff));
-//	}
+	@Test
+	public void testPaging(){
+		Criteria cri = new Criteria();
+		//5개씩 3페이지
+		cri.setPageNum(3);
+		cri.setAmount(5);
+		List<ResultDAO> list = staffMapper.getListWithPaging(cri);
+		list.forEach(staff -> log.info(staff));
+	}
 	
 //	@Test
 //	public void testSearchingPaging(){
