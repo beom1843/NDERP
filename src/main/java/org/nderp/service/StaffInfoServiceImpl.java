@@ -112,6 +112,11 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 			cri.setMethod("desc");
 		}
 		
+		if(cri.getCondition()=="sex"){
+			cri.setCondition("decode(sex,'1','1','3','2','2','3','4','4')");
+			cri.setMethod("");
+		}
+		
 		return staffMapper.getListWithPaging(cri);
 	}
 

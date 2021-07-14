@@ -14,7 +14,11 @@ var m5 = 0;
 var m =0;
 var c="";
 var counts = [m1, m2, m3, m4, m5]
-var sortCondition ;
+var 	sortCondition={
+		c:"",
+		m:"",
+		page:""
+	}
 
 window.sortCount=function(element){
 	console.log($(element).val());
@@ -28,7 +32,7 @@ window.sortCount=function(element){
 				counts[i]=0
 			}
 		}
-	}
+	}//sortCount안의 check 함수 
 
 	if(value =="rownum"){
 		check(0);
@@ -80,25 +84,40 @@ window.sortCount=function(element){
 	
 	sortCondition={
 		c:c,
-		m:m%2
+		m:m%2,
+		page:1
 	}
+	alert(sortCondition.c)
 
-	
-	
+search(sortCondition);
 }//sortCount 함수 끝
-	
-	function search(page){
 
+
+
+
+	
+	function search(sortCondition){
+		
+			
 			if(sortCondition){
-				condition=c
-				method=m
+				if(sortCondition.c==""){
+					console.log("객체안의 컨디션"+sortCondition.c)
+					condition="staff_no desc";
+					page=sortCondition.page
+					method ="";
+				}else{
+					condition=sortCondition.c
+					method=sortCondition.m
+					page=sortCondition.page
+				}
 			}else{
 				condition="staff_no desc";
-				method ="";
+				page =1;
 			}
-				
 
-		
+			console.log("컨디션!!!"+condition)
+			
+			
 			var pagination = $(".pagination");
 			var total = $(".total")
 			var str1="";
@@ -151,7 +170,6 @@ window.sortCount=function(element){
 					addSkillCode=strSkill[0];
 				}
 			}
-			console.log("과연값을잘받아왔을지?"+addSkillCode);
 			
 
 			
@@ -305,7 +323,7 @@ window.sortCount=function(element){
 				str+='<input type="hidden" id="m2" name="m2" value="staff_name"/>'
 				str+='<input type="hidden" id="m3" name="m3" value="sex"/>'
 				str+='<input type="hidden" id="m4" name="m4" value="department_name"/>'
-				str+='<input type="hidden" id="m5" name="m5" value="g_day"/>'
+				str+='<input type="hidden" id="m5" name="m5" value="graduate_day"/>'
 					
 				str+="<table style='width: 80%'>";
 				
@@ -348,8 +366,9 @@ window.sortCount=function(element){
 	
 	
 	$("#searchAll").on("click", (function(e){
-		var page=1;
-		search(page);
+		sortCondition.page=1
+		
+		search(sortCondition);
 	}))
 			
 	$("#reset").on("click", function(e){
@@ -367,8 +386,8 @@ window.sortCount=function(element){
 	}
 	
 	window.movePage = function(pageNum){
-		var page= pageNum;
-		search(page);
+		sortCondition.page= pageNum;
+		search(sortCondition);
 	}
 	
 	window.checkOnlyOneM=function(element){
@@ -384,8 +403,8 @@ window.sortCount=function(element){
 	
 
 	$("#search").on("click",function(pageNum){
-		var page=1;
-		search(page);
+		
+		search(sortCondition);
 	})
 	
 	
