@@ -11,12 +11,21 @@
 	<!-- jQuery library -->
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 	
+	<!-- icon Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css"	href="/resources/css/table.css" />
 	<link rel="stylesheet" type="text/css"	href="/resources/css/search.css" />
 
 </head>
 <body>
+	
+	<input type="hidden" id="m1" name="m1" value="0"/>
+	<input type="hidden" id="m2" name="m2" value="0"/>
+	<input type="hidden" id="m3" name="m3" value="0"/>
+	<input type="hidden" id="m4" name="m4" value="0"/>
+	<input type="hidden" id="m5" name="m5" value="0"/>
 
 	<table style="width: 100%">
 		<tr>

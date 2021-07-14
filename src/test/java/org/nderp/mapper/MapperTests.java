@@ -34,17 +34,17 @@ public class MapperTests {
 //		log.info(mapper.getDept());
 //	}
 	
-	@Test
-	public void testInsert(){
-		Staff staff = new Staff();
-		staff.setDepartment_code(1);
-		staff.setGraduate_day("2012-07-15");
-		staff.setJumin_no("921015-2000000");
-		staff.setStaff_name("조길동");
-		staff.setSchool_code(2);
-		
-		log.info(staffMapper.insert(staff));
-	}
+//	@Test
+//	public void testInsert(){
+//		Staff staff = new Staff();
+//		staff.setDepartment_code(1);
+//		staff.setGraduate_day("2012-07-15");
+//		staff.setJumin_no("921015-2000000");
+//		staff.setStaff_name("조길동");
+//		staff.setSchool_code(2);
+//		
+//		log.info(staffMapper.insert(staff));
+//	}
 
 //	@Test
 //	public void testDelete(){
@@ -77,8 +77,12 @@ public class MapperTests {
 	public void testPaging(){
 		Criteria cri = new Criteria();
 		//5개씩 3페이지
-		cri.setPageNum(3);
-		cri.setAmount(5);
+		cri.setPageNum(1);
+		cri.setAmount(17);
+		cri.setCondition("graduate_day");
+		cri.setMethod("desc");
+		cri.setIsSkill("P");
+		cri.setIsAdd("B");
 		List<ResultDAO> list = staffMapper.getListWithPaging(cri);
 		list.forEach(staff -> log.info(staff));
 	}

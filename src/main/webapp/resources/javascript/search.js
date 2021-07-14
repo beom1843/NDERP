@@ -1,13 +1,23 @@
 $(document).ready(function(){
 	
 console.log(window.location.href);
-	
-	$("#search").on("click",function(pageNum){
+
+var condition =""
+		
+	$("#sort").on("click",function(pageNum){
 		var page=1;
 		search(page);
 	})
+
+	
+	function sort(condition){
+		search(1);
+	}
 	
 	function search(page){
+
+			condition="staff_no desc"
+		
 			var pagination = $(".pagination");
 			var total = $(".total")
 			var str1="";
@@ -166,7 +176,8 @@ console.log(window.location.href);
 				month2:grad_m2,
 				day2:grad_d2,
 				isAdd:isAdd,
-				add:add
+				add:add,
+				condition:condition
 			},
 			function(pageMaker){
 				if(pageMaker.prev){
@@ -204,16 +215,27 @@ console.log(window.location.href);
 				month2:grad_m2,
 				day2:grad_d2,
 				isAdd:isAdd,
-				add:add
+				add:add,
+				condition:condition
 			},
 			function(list){
 				if(list == null || list.length ==0){ }
 				str+="<table style='width: 80%'>";
-				str+="	<tr><th>번호</th>";
-				str+="<th>이름</th>";
-				str+="<th>성별</th>";
-				str+="<th>부서</th>";
-				str+="<th>졸업일</th>";
+				str+="<tr><th>번호"+'<div name="sort1" onclick="sortCount(m1)" value="rownum" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter"  viewBox="0 0 16 16" >'+
+				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
+				  '</svg></div>'+"</th>";
+				str+="<th>이름"+'<div name="sort1" onclick="sortCount(m2)" value ="staff_name"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16" >'+
+				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
+					  '</svg></div>'+"</th>";
+				str+="<th>성별"+'<div name="sort1" onclick="sortCount(m3)" value="sex"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
+				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
+				  '</svg></div>'+"</th>";
+				str+="<th>부서"+'<div name="sort1" onclick="sortCount(m4)" value="dept"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
+				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
+				  '</svg></div>'+"</th>";
+				str+="<th>졸업일"+'<div name="sort1" onclick="sortCount(m5)" value="g_day"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
+				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
+				  '</svg></div>'+"</th>";
 				str+="<th>  </th></tr>";
 				
 				for(var i=0, len=list.length||0;i<len;i++){	
@@ -269,7 +291,51 @@ console.log(window.location.href);
 	    cb.checked=false;
 	  })
 	  element.checked=true;
-}
+	  
+	}
+	
+	var sortBtn = $(".bi bi-filter");
+
+	var m = 0;
+	
+	
+	window.sortCount=function(element){
+		console.log($(element).val());
+		element++
+		alert(element);
+		
+		
+/*		var m1=0;
+		var m2=0;
+		var m3=0;
+		var m4=0;
+		var m5=0;
+		
+		
+		if(element.val=="rownum"){
+			m1++;
+			alert(m1);
+			m2=m3=m4=m5=0
+		}
+		if($(element).val()=="staff_name"){
+			m2++;
+			alert(m2);
+		}
+		if($(element).val()=="sex"){
+			m3++;
+			alert(m3);
+		}
+		if($(element).val()=="dept"){
+			m4++;
+			alert(m4);
+		}
+		if($(element).val()=="g_day"){
+			m5++;
+			alert(m5);
+		}*/
+		
+		
+	}
 	
 	
 		

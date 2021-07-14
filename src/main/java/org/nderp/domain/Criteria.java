@@ -36,6 +36,9 @@ public class Criteria {
 	private String month2;
 	private String day2;
 	
+	private String condition;
+	private String method;
+	
 	public Criteria(){
 		this(1,5);
 		this.isSkill="P";
@@ -72,4 +75,6 @@ public class Criteria {
 	public String[] getAddArr(){
 		return add ==null? new String[] {} : add.split("");
 	}
+	
+
 }
