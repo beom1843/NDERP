@@ -21,11 +21,7 @@
 </head>
 <body>
 	
-	<input type="hidden" id="m1" name="m1" value="0"/>
-	<input type="hidden" id="m2" name="m2" value="0"/>
-	<input type="hidden" id="m3" name="m3" value="0"/>
-	<input type="hidden" id="m4" name="m4" value="0"/>
-	<input type="hidden" id="m5" name="m5" value="0"/>
+
 
 	<table style="width: 100%">
 		<tr>

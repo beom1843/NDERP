@@ -79,7 +79,7 @@ public class MapperTests {
 		//5개씩 3페이지
 		cri.setPageNum(1);
 		cri.setAmount(17);
-		cri.setCondition("graduate_day");
+		cri.setCondition("sex");
 		cri.setMethod("desc");
 		cri.setIsSkill("P");
 		cri.setIsAdd("B");

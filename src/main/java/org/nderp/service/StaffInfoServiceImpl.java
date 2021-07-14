@@ -105,6 +105,13 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 		}else if(cri.getSex()=="MF"||cri.getSex()=="FM"){
 			cri.setSex("1234");
 		}
+		
+		if(cri.getMethod()=="1"){
+			cri.setMethod("asc");
+		}else if(cri.getMethod()=="0"){
+			cri.setMethod("desc");
+		}
+		
 		return staffMapper.getListWithPaging(cri);
 	}
 

@@ -4,19 +4,100 @@ console.log(window.location.href);
 
 var condition =""
 		
-	$("#sort").on("click",function(pageNum){
-		var page=1;
-		search(page);
-	})
+
+
+var m1 = 0;
+var m2 = 0;
+var m3 = 0;
+var m4 = 0;
+var m5 = 0;
+var m =0;
+var c="";
+var counts = [m1, m2, m3, m4, m5]
+var sortCondition ;
+
+window.sortCount=function(element){
+	console.log($(element).val());
+	//element++
+	var value = $(element).val();
+
+
+	function check(x){
+		for(var i = 0 ; i<5 ; i++){
+			if(!i==x&&!(counts[i]==0)){
+				counts[i]=0
+			}
+		}
+	}
+
+	if(value =="rownum"){
+		check(0);
+		
+		m=counts[0]
+		m++;
+		counts[0]=m
+		
+		c=value;
+	}
+	if(value =="staff_name"){
+		check(1);
+		
+		m=counts[1]
+		m++;
+		counts[1]=m
+		
+		c=value;
+	}
+	if(value =="sex"){
+		check(2);
+		
+		m=counts[2]
+		m++;
+		counts[2]=m
+		
+		c=value;
+	}
+	if(value =="dept"){
+		check(3);
+		
+		m=counts[3]
+		m++;
+		counts[3]=m
+		
+		c=value;
+	}
+	if(value =="g_day"){
+		check(4);
+		
+		m=counts[4]
+		m++;
+		counts[4]=m
+		
+		c=value;
+	}
+	console.log(m%2);
+	console.log(counts)
+	
+	sortCondition={
+		c:c,
+		m:m%2
+	}
 
 	
-	function sort(condition){
-		search(1);
-	}
+	
+}//sortCount 함수 끝
 	
 	function search(page){
 
-			condition="staff_no desc"
+			if(sortCondition){
+				condition=c
+				method=m
+			}else{
+				condition="staff_no desc";
+				method ="";
+			}
+				
+
 		
 			var pagination = $(".pagination");
 			var total = $(".total")
@@ -177,8 +258,8 @@ var condition =""
 				day2:grad_d2,
 				isAdd:isAdd,
 				add:add,
-				condition:condition
-			},
+				condition:condition,
+				method:method},
 			function(pageMaker){
 				if(pageMaker.prev){
 					str1+="<li class='paginate_button previous' onclick ='movePage("+(pageMaker.startPage-1)+")' >이전</a></li>"
@@ -216,24 +297,31 @@ var condition =""
 				day2:grad_d2,
 				isAdd:isAdd,
 				add:add,
-				condition:condition
-			},
+				condition:condition,
+				method:method},
 			function(list){
 				if(list == null || list.length ==0){ }
+				str+='<input type="hidden" id="m1" name="m1" value="rownum"/>'
+				str+='<input type="hidden" id="m2" name="m2" value="staff_name"/>'
+				str+='<input type="hidden" id="m3" name="m3" value="sex"/>'
+				str+='<input type="hidden" id="m4" name="m4" value="department_name"/>'
+				str+='<input type="hidden" id="m5" name="m5" value="g_day"/>'
+					
 				str+="<table style='width: 80%'>";
-				str+="<tr><th>번호"+'<div name="sort1" onclick="sortCount(m1)" value="rownum" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter"  viewBox="0 0 16 16" >'+
+				
+				str+="<tr><th>번호"+'<div name="sort1" onclick="sortCount(m1)" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter"  viewBox="0 0 16 16" >'+
 				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
 				  '</svg></div>'+"</th>";
-				str+="<th>이름"+'<div name="sort1" onclick="sortCount(m2)" value ="staff_name"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16" >'+
+				str+="<th>이름"+'<div name="sort1" onclick="sortCount(m2)" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16" >'+
 				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
 					  '</svg></div>'+"</th>";
-				str+="<th>성별"+'<div name="sort1" onclick="sortCount(m3)" value="sex"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
+				str+="<th>성별"+'<div name="sort1" onclick="sortCount(m3)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
 				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
 				  '</svg></div>'+"</th>";
-				str+="<th>부서"+'<div name="sort1" onclick="sortCount(m4)" value="dept"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
+				str+="<th>부서"+'<div name="sort1" onclick="sortCount(m4)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
 				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
 				  '</svg></div>'+"</th>";
-				str+="<th>졸업일"+'<div name="sort1" onclick="sortCount(m5)" value="g_day"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
+				str+="<th>졸업일"+'<div name="sort1" onclick="sortCount(m5)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
 				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
 				  '</svg></div>'+"</th>";
 				str+="<th>  </th></tr>";
@@ -294,48 +382,11 @@ var condition =""
 	  
 	}
 	
-	var sortBtn = $(".bi bi-filter");
 
-	var m = 0;
-	
-	
-	window.sortCount=function(element){
-		console.log($(element).val());
-		element++
-		alert(element);
-		
-		
-/*		var m1=0;
-		var m2=0;
-		var m3=0;
-		var m4=0;
-		var m5=0;
-		
-		
-		if(element.val=="rownum"){
-			m1++;
-			alert(m1);
-			m2=m3=m4=m5=0
-		}
-		if($(element).val()=="staff_name"){
-			m2++;
-			alert(m2);
-		}
-		if($(element).val()=="sex"){
-			m3++;
-			alert(m3);
-		}
-		if($(element).val()=="dept"){
-			m4++;
-			alert(m4);
-		}
-		if($(element).val()=="g_day"){
-			m5++;
-			alert(m5);
-		}*/
-		
-		
-	}
+	$("#search").on("click",function(pageNum){
+		var page=1;
+		search(page);
+	})
 	
 	
 		
