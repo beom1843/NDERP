@@ -89,7 +89,8 @@
 						where staff_no in(
 							select distinct staff_no
 							from staff_skill
-							<if test = "isAdd=='A'.toString()">
+							<choose>
+							<when test = "isAdd=='A'.toString()">
 							where staff_no in
 								(select staff_no
 									from staff_Skill
@@ -99,8 +100,12 @@
  									#{add}
 								</foreach>
 								)
-							</if>
-							where Skill_Code in 
+								and skill_code in
+							</when>
+							<otherwise>
+							where skill_code in
+							</otherwise>
+							</choose>
 							<foreach collection="skillArr" item="skill" open="(" separator="," close=")">
 							#{skill}
 							</foreach>
@@ -152,10 +157,10 @@
 			 </trim>
 			 </foreach>
 			<![CDATA[ 
-			rownum<=#{pageNum} * #{amount}
+			rownum<=#{pageNum} * #{amount,jdbcType=INTEGER}
 
 			)
-			where rn> (#{pageNum}-1)* #{amount}
+			where rn> (#{pageNum}-1)* #{amount,jdbcType=INTEGER}
 			order by ${condition} ${method}
 		]]>
 
@@ -221,7 +226,6 @@
 			 	<if test="type=='G'.toString()">
 			 	<![CDATA[ 
 				to_timestamp(substr(graduate_day,1,4)||substr(graduate_day,6,2)||substr(graduate_day,9,2),'YYYYMMDD')
-				
 				between	to_timestamp(#{year1}||#{month1}||#{day1},'YYYYMMDD') and to_timestamp(#{year2}||#{month2}||#{day2},'YYYYMMDD')
 			 	]]>
 			 	</if>

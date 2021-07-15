@@ -34,7 +34,9 @@ window.sortCount=function(element){
 		}
 	}//sortCount안의 check 함수 
 
-	if(value =="rownum"){
+	
+	switch(value){
+	case "rownum":
 		check(0);
 		
 		m=counts[0]
@@ -42,8 +44,9 @@ window.sortCount=function(element){
 		counts[0]=m
 		
 		c=value;
-	}
-	if(value =="staff_name"){
+		break;
+		
+	case "staff_name":
 		check(1);
 		
 		m=counts[1]
@@ -51,8 +54,9 @@ window.sortCount=function(element){
 		counts[1]=m
 		
 		c=value;
-	}
-	if(value =="sex"){
+		break;
+		
+	case "sex":
 		check(2);
 		
 		m=counts[2]
@@ -60,8 +64,9 @@ window.sortCount=function(element){
 		counts[2]=m
 		
 		c=value;
-	}
-	if(value =="dept"){
+		break;
+		
+	case "department_name":
 		check(3);
 		
 		m=counts[3]
@@ -69,8 +74,9 @@ window.sortCount=function(element){
 		counts[3]=m
 		
 		c=value;
-	}
-	if(value =="g_day"){
+		break;
+		
+	case "graduate_day":
 		check(4);
 		
 		m=counts[4]
@@ -78,7 +84,9 @@ window.sortCount=function(element){
 		counts[4]=m
 		
 		c=value;
+		break;	
 	}
+	
 	console.log(m%2);
 	console.log(counts)
 	
@@ -102,7 +110,7 @@ search(sortCondition);
 			if(sortCondition){
 				if(sortCondition.c==""){
 					console.log("객체안의 컨디션"+sortCondition.c)
-					condition="staff_no desc";
+					condition="rownum";
 					page=sortCondition.page
 					method ="";
 				}else{
@@ -111,11 +119,10 @@ search(sortCondition);
 					page=sortCondition.page
 				}
 			}else{
-				condition="staff_no desc";
+				condition="rownum" 
 				page =1;
 			}
-
-			console.log("컨디션!!!"+condition)
+			console.log("페이지갖고왔나 ?"+sortCondition.page);
 			
 			
 			var pagination = $(".pagination");
@@ -181,18 +188,17 @@ search(sortCondition);
 			//addMethod의 값이 or이라면 skillList에 추가, and라면 Criteria의 add 변수에 담기
 			var add="";
 			var isAdd="N";
+			var isSkill = "P";
 			var addMethod=$("input[name='add_method']:checked").val();
 			if(addMethod=="or"){
+				isSkill="Y";
 				isAdd="O";
 				s_List += addSkillCode;
 			}else if(addMethod=="and"){
 				add=addSkillCode;
 				isAdd="A";
 			}
-			console.log(addMethod);
-			console.log("isAdd==========="+isAdd);
-			console.log("add-==============="+add);
-			console.log("addSkillCode========="+addSkillCode);
+
 			var y = document.getElementById("year1");
 			var grad_y1 = y.options[y.selectedIndex].text*1; 
 			var m = document.getElementById("month1");
@@ -238,7 +244,7 @@ search(sortCondition);
 			
 			
 			var type = "";
-			var isSkill = "P";
+
 			if(name){
 				type +="N";
 			}
@@ -257,6 +263,16 @@ search(sortCondition);
 			if(g_OK1&&g_OK2&&g1<g2){
 				type +="G"
 			}
+			
+			console.log(addMethod);
+			console.log("isAdd==========="+isAdd);
+			console.log("add-==============="+add);
+			console.log("addSkillCode========="+addSkillCode);
+			console.log("skillList"+s_List)
+			console.log("pageNum=========="+page);
+			console.log("isSkill------------"+isSkill);
+			console.log("isAdd-------------"+isAdd);
+			console.log("Condition--------------"+condition)
 			
 			staffInfoService.getPage({
 				pageNum:page,
@@ -330,16 +346,16 @@ search(sortCondition);
 				str+="<tr><th>번호"+'<div name="sort1" onclick="sortCount(m1)" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter"  viewBox="0 0 16 16" >'+
 				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
 				  '</svg></div>'+"</th>";
-				str+="<th>이름"+'<div name="sort1" onclick="sortCount(m2)" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16" >'+
+				str+="<th>이름"+'<div name="sort2" onclick="sortCount(m2)" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16" >'+
 				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
 					  '</svg></div>'+"</th>";
-				str+="<th>성별"+'<div name="sort1" onclick="sortCount(m3)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
+				str+="<th>성별"+'<div name="sort3" onclick="sortCount(m3)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
 				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
 				  '</svg></div>'+"</th>";
-				str+="<th>부서"+'<div name="sort1" onclick="sortCount(m4)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
+				str+="<th>부서"+'<div name="sort4" onclick="sortCount(m4)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
 				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
 				  '</svg></div>'+"</th>";
-				str+="<th>졸업일"+'<div name="sort1" onclick="sortCount(m5)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
+				str+="<th>졸업일"+'<div name="sort5" onclick="sortCount(m5)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
 				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
 				  '</svg></div>'+"</th>";
 				str+="<th>  </th></tr>";
@@ -403,7 +419,7 @@ search(sortCondition);
 	
 
 	$("#search").on("click",function(pageNum){
-		
+		sortCondition.page=1;
 		search(sortCondition);
 	})
 	

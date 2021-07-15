@@ -78,11 +78,13 @@ public class MapperTests {
 		Criteria cri = new Criteria();
 		//5개씩 3페이지
 		cri.setPageNum(1);
-		cri.setAmount(17);
-		cri.setCondition("sex");
-		cri.setMethod("desc");
-		cri.setIsSkill("P");
-		cri.setIsAdd("B");
+		cri.setAmount(18);
+		cri.setSkill("19");
+//		cri.setAdd("9");
+		cri.setIsSkill("Y");
+		cri.setIsAdd("O");
+		cri.setCondition("rownum");
+		cri.setMethod("");
 		List<ResultDAO> list = staffMapper.getListWithPaging(cri);
 		list.forEach(staff -> log.info(staff));
 	}

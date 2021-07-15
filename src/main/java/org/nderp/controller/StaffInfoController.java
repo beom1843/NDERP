@@ -146,8 +146,9 @@ public class StaffInfoController {
 			produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<ResultDAO>> searchStaff(@RequestBody Criteria cri){
-		
-		return new ResponseEntity<List<ResultDAO>>(service.listStaff(cri),HttpStatus.OK);
+		List<ResultDAO> list = service.listStaff(cri);
+		log.info("search 결과"+list);
+		return new ResponseEntity<List<ResultDAO>>(list,HttpStatus.OK);
 	}
 	
 	@PostMapping(value="/page",

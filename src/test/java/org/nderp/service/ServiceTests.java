@@ -2,6 +2,7 @@ package org.nderp.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.nderp.domain.Criteria;
 import org.nderp.domain.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -48,21 +49,36 @@ public class ServiceTests {
 //		
 //	}
 
+//	@Test
+//	public void testInsert(){
+//		
+//		Staff staff = new Staff();
+//		staff.setDepartment_code(2);
+//		staff.setGraduate_day("2016-07-18");
+//		staff.setJumin_no("000118-143");
+//		staff.setSchool_code(3);
+//		int[] SL = {1,2,3,4};
+//		staff.setSkill_list(SL);
+//		staff.setStaff_name("야코");
+//		log.info(staff);
+//		
+//		service.insertStaff(staff);
+//		
+//	}
+	
 	@Test
-	public void testInsert(){
-		
-		Staff staff = new Staff();
-		staff.setDepartment_code(2);
-		staff.setGraduate_day("2016-07-18");
-		staff.setJumin_no("000118-143");
-		staff.setSchool_code(3);
-		int[] SL = {1,2,3,4};
-		staff.setSkill_list(SL);
-		staff.setStaff_name("야코");
-		log.info(staff);
-		
-		service.insertStaff(staff);
-		
+	public void testSearch(){
+		Criteria cri = new Criteria();
+		//5개씩 3페이지
+		cri.setPageNum(1);
+		cri.setAmount(18);
+		cri.setSkill("19");
+//		cri.setAdd("9");
+		cri.setIsSkill("Y");
+		cri.setIsAdd("O");
+		cri.setCondition("rownum");
+		log.info("서비스테스트000000000"+cri);
+		log.info(service.listStaff(cri));
 	}
 	
 //	@Test
