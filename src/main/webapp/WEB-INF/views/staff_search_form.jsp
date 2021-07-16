@@ -20,6 +20,9 @@
 
 </head>
 <body>
+	<input type="hidden" id="pageNum" value="<c:out value ='${pageNum}'/>">
+	<input type="hidden" id="amount" value="<c:out value ='${amount}'/>">
+	<input type="hidden" id="condition" value="<c:out value ='${condition}'/>">
 	
 
 

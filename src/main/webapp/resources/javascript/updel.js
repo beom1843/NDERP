@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	
+	console.log("후레자"+ window.opener.document.URL)
+	
 	var s_no = $("#staff_no").val();
 	
 	//Staff 가져오기
@@ -83,6 +85,7 @@ $(document).ready(function(){
 		},
 		function(result){
 			alert(result+": 수정되었습니다!")
+			window.opener.document.location.href = "http://localhost:8081/staff_search_form?pageNum=1";
 			window.open("about:blank","_self").close();
 		});
 	}))// update 버튼 클릭 이벤트
@@ -98,7 +101,14 @@ $(document).ready(function(){
 			},
 			function(result){
 				alert(result+":삭제되었습니다!")
+//				opener.parent.location.reload();
+//				opener.parent.location='http://localhost:8081/staff_search_form';
+//				opener.document.location.href="http://localhost:8081/staff_search_form"
+				window.opener.document.location.href = window.opener.document.URL;
+//				opener.loaction.reload();
+//				opener.location.replace("staff_search_form")
 				window.open("about:blank","_self").close();
+
 			})
 		}
 		

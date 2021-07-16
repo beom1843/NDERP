@@ -30,6 +30,7 @@ public class PageController {
 	public void search(){
 		
 	}
+
 	
 	@GetMapping("/staff_updel_form")
 	public void updel(int staff_no, Model model){

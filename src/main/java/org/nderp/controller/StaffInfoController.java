@@ -130,15 +130,6 @@ public class StaffInfoController {
 		return new ResponseEntity<PageDTO>(pageMaker,HttpStatus.OK);
 	}
 	
-//	@RequestMapping(method={RequestMethod.PUT, RequestMethod.PATCH},
-//			value="/criteria",
-//			consumes="application/json",
-//			produces={MediaType.APPLICATION_XML_VALUE,
-//					MediaType.APPLICATION_JSON_UTF8_VALUE})
-//	public ResponseEntity<List<ResultDAO>> searchStaff(@RequestBody Criteria cri){
-//		
-//		return new ResponseEntity<List<ResultDAO>>(service.listStaff(cri),HttpStatus.OK);
-//	}
 	
 	@PostMapping(value="/search",
 			consumes = "application/json",

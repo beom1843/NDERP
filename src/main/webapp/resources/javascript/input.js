@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	
+	 console.log("이놈아1!"+window.opener.document.URL)
 	
 		$("#reset").on("click", function(e){
 			self.location="staff_input_form";
@@ -92,7 +92,11 @@ $(document).ready(function(){
 				},
 				function(result){
 					alert(result+": 등록되었습니다!")
+//					opener.parent.location.reload();
+//					opener.parent.location='http://localhost:8081/staff_search_form';
+					window.opener.document.location.href = window.opener.document.URL;
 					window.open("about:blank","_self").close();
+
 				});
 			}
 			

@@ -2,6 +2,16 @@ $(document).ready(function(){
 	
 console.log(window.location.href);
 
+//var criteria_p = $("#pageNum").val();
+//
+//console.log(criteria_p);
+//if(criteria_p){
+//	sortCondition.page=1
+//	sortCondition.c="staff_no desc"
+//		sortCondition.m=null;
+//	search(sortCondition);
+//}
+
 var condition =""
 		
 
@@ -63,7 +73,7 @@ window.sortCount=function(element){
 		m++;
 		counts[2]=m
 		
-		c=value;
+		c="decode(sex,'1','1','3','2','2','3','4','4')";
 		break;
 		
 	case "department_name":
@@ -87,15 +97,12 @@ window.sortCount=function(element){
 		break;	
 	}
 	
-	console.log(m%2);
-	console.log(counts)
 	
 	sortCondition={
 		c:c,
 		m:m%2,
 		page:1
 	}
-	alert(sortCondition.c)
 
 search(sortCondition);
 }//sortCount 함수 끝
@@ -109,7 +116,6 @@ search(sortCondition);
 			
 			if(sortCondition){
 				if(sortCondition.c==""){
-					console.log("객체안의 컨디션"+sortCondition.c)
 					condition="rownum";
 					page=sortCondition.page
 					method ="";
@@ -122,7 +128,6 @@ search(sortCondition);
 				condition="rownum" 
 				page =1;
 			}
-			console.log("페이지갖고왔나 ?"+sortCondition.page);
 			
 			
 			var pagination = $(".pagination");
@@ -168,7 +173,6 @@ search(sortCondition);
 				Skill_List2.push($(this).val());
 			})
 			
-			console.log(Skill_List2);
 			//Skill_List2의 값을 split("-")로 쪼개, 배열의 1번(lowercase)과 비교후 0번을 가져옴
 			for(var i = 0 ; i<Skill_List2.length;i++){
 				var strSkill = Skill_List2[i].split('-');
@@ -264,14 +268,6 @@ search(sortCondition);
 				type +="G"
 			}
 			
-			console.log(addMethod);
-			console.log("isAdd==========="+isAdd);
-			console.log("add-==============="+add);
-			console.log("addSkillCode========="+addSkillCode);
-			console.log("skillList"+s_List)
-			console.log("pageNum=========="+page);
-			console.log("isAdd-------------"+isAdd);
-			console.log("Condition--------------"+condition)
 			
 			staffInfoService.getPage({
 				pageNum:page,
@@ -395,7 +391,6 @@ search(sortCondition);
 		var url="staff_updel_form?staff_no="+staff_no;
 		var name = "Update_or_Delete";
 		var option="location= no,height=100";
-		console.log(url);
 		window.open(url,name,option);
 	}
 	
@@ -421,15 +416,12 @@ search(sortCondition);
 		search(sortCondition);
 	})
 	
-	
-		
-		console.log("js 작동");
 
-		$("#register").on("click", function(e){
-			e.preventDefault(e);
-			var url = "staff_input_form";
-			var name= "Register_new_Staff";
-			var option="location= no,height=100";
-			window.open(url,name,option);
-		})
+	$("#register").on("click", function(e){
+		e.preventDefault(e);
+		var url = "staff_input_form";
+		var name= "Register_new_Staff";
+		var option="location= no,height=100";
+		window.open(url,name,option);
+	})
 })

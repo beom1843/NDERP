@@ -42,7 +42,7 @@ var staffInfoService=(function(){
 	}//getSchool 함수 끝
 	
 	function add(wrapper, callback, error){
-		console.log("wrapper..........");
+		console.log("add..........");
 	$.ajax({
 		type: 'post',
 		url: '/new',
@@ -117,7 +117,7 @@ var staffInfoService=(function(){
 	
 
 	function search(data, callback, error){
-		console.log("wrapper..........");
+		console.log("search..........");
 	$.ajax({
 		type: 'post',
 		url: '/search',
@@ -137,7 +137,7 @@ var staffInfoService=(function(){
 		})
 	}/*search 함수 끝*/
 	function getPage(data, callback, error){
-		console.log("wrapper..........");
+		console.log("getPage..........");
 	$.ajax({
 		type: 'post',
 		url: '/page',
