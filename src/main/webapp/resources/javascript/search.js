@@ -376,14 +376,15 @@ search(sortCondition);
 	
 	
 	if(redirect=="1"){
+		
 		sortCondition.page=1
-		sortCondition.c="staff_no desc"
 			sortCondition.m=null;
 		search(sortCondition);
 	}
 	
 	
 	$("#searchAll").on("click", (function(e){
+		self.location="staff_search_form?redirect=0";
 		sortCondition.page=1
 		sortCondition.c="staff_no desc"
 			sortCondition.m=null;
