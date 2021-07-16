@@ -65,106 +65,39 @@
 	
 	
 	<select id="getListWithPaging" resultType = "org.nderp.domain.ResultDAO">
-		<![CDATA[
-		select
+select *
+from(select rn, staff_no, staff_name, sex, (select e.department_name
+	      from code_department e
+	      where d.department_code=e.department_code)as department_name, graduate_day, skill_code
+			from(select rownum rn, c.staff_no, b. staff_name,
+		      substr(b.jumin_no,8,1) as sex,
+		      b.department_code,
+		      b.graduate_day,
+		      c.skill_code
+				from
+				(
+				select 
+				a.staff_no, 
+				      listagg(a.skill_code,',') within group(order by a.staff_skill_no) as skill_code
+				from staff_skill a, staff b
+				group by a.staff_no
+				having a.staff_no=b.staff_no
+				order by staff_no desc 
+			) c, staff b
+	where c.staff_no=b.staff_no
+	 and 
+	 
+	 skill_code like '%1%'
+	 and skill_code like '%3%'
+	 order by ${condition}
 
-			rn, staff_no, staff_name, substr(jumin_no,8,1) sex, 
-			(select department_name
-			from code_department
-			where department_code = dept) department_name, graduate_day
-			from
-			(
-			select 
-			/*+ INDEX_DESC(staff SYS_C007487) */
-			rownum rn, staff_no, staff_name, jumin_no,department_code dept, graduate_day
-			from
-			 ]]>
-			 
-
-			 <choose>
-				 <when test ="isSkill=='Y'.toString()">
-				  (
-					select *
-						from staff
-						where staff_no in(
-							select distinct staff_no
-							from staff_skill
-							<choose>
-							<when test = "isAdd=='A'.toString()">
-							where staff_no in
-								(select staff_no
-									from staff_Skill
-									group by staff_no
-									having listagg(skill_code,',') within group(order by staff_skill_no) like
-								<foreach collection="addArr" item="add" open="'%" separator="%" close="%'" >
- 									#{add}
-								</foreach>
-								)
-								and skill_code in
-							</when>
-							<otherwise>
-							where skill_code in
-							</otherwise>
-							</choose>
-							<foreach collection="skillArr" item="skill" open="(" separator="," close=")">
-							#{skill}
-							</foreach>
-							))
-				 </when>
-				 <otherwise>
-				 	staff
-				 	<if test = "isAdd=='A'.toString()">
-				 	where staff_no in
-				 	(select staff_no
-							from staff_Skill
-							group by staff_no
-							having listagg(skill_code,',') within group(order by staff_skill_no) like
-						<foreach collection="addArr" item="add" open="'%" separator="%" close="%'" >
-								#{add}
-						</foreach>
-						)
-				 	</if>
-
-				 </otherwise>
-			 </choose>
-			where 
-			<foreach collection="typeArr" item="type">
-			<trim prefix ="(" suffix=") AND" >
-			 	<if test="type=='N'.toString()">
-			 	staff_name like '%'||#{keyword}||'%'
-			 	</if>
-			 	<if test="type=='J'.toString()">
-			 	substr(jumin_no,8,1) in
-			 	<foreach collection="sexArr" item="sex" open="(" separator="," close=")">
-			 	 #{sex}
-			 	 </foreach>
-			 	</if>
-			 	<if test="type=='D'.toString()">
-			 	department_code = #{dept}
-			 	</if>
-			 	<if test="type=='S'.toString()">
-			 	school_code in 
-			 	<foreach collection="eduArr" item="edu" open="(" separator="," close=")">
-			 	#{edu}
-			 	</foreach>
-			 	</if>
-			 	<if test="type=='G'.toString()">
-			 	<![CDATA[ 
-				to_timestamp(substr(graduate_day,1,4)||substr(graduate_day,6,2)||substr(graduate_day,9,2),'YYYYMMDD')
-				between	to_timestamp(#{year1}||#{month1}||#{day1},'YYYYMMDD') and to_timestamp(#{year2}||#{month2}||#{day2},'YYYYMMDD')
-			 	]]>
-			 	</if>
-			 </trim>
-			 </foreach>
 			<![CDATA[ 
-			rownum<=#{pageNum} * #{amount,jdbcType=INTEGER}
-
-			)
-			where rn> (#{pageNum}-1)* #{amount,jdbcType=INTEGER}
-			order by ${condition} ${method}
-		]]>
-
-		
+				) d
+				where 
+				rownum<=#{pageNum} * #{amount}
+				)
+				where rn> (#{pageNum}-1)* #{amount}
+				]]>
 	</select>
 	
 	

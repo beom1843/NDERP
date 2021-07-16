@@ -72,13 +72,14 @@ public class ServiceTests {
 		//5개씩 3페이지
 		cri.setPageNum(1);
 		cri.setAmount(18);
-		cri.setSkill("19");
-//		cri.setAdd("9");
+		cri.setSkill("1");
+		cri.setAdd("9");
 		cri.setIsSkill("Y");
-		cri.setIsAdd("O");
+		cri.setIsAdd("A");
 		cri.setCondition("rownum");
+		cri.setMethod("");
 		log.info("서비스테스트000000000"+cri);
-		log.info(service.listStaff(cri));
+		log.info("서비스결과--------"+ service.listStaff(cri));
 	}
 	
 //	@Test
