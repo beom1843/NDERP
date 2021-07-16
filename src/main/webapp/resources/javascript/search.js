@@ -2,7 +2,7 @@ $(document).ready(function(){
 	
 console.log(window.location.href);
 
-//var criteria_p = $("#pageNum").val();
+var redirect = $("#redirect").val();
 //
 //console.log(criteria_p);
 //if(criteria_p){
@@ -12,6 +12,7 @@ console.log(window.location.href);
 //	search(sortCondition);
 //}
 
+console.log(redirect)
 var condition =""
 		
 
@@ -374,6 +375,14 @@ search(sortCondition);
 	}
 	
 	
+	if(redirect=="1"){
+		sortCondition.page=1
+		sortCondition.c="staff_no desc"
+			sortCondition.m=null;
+		search(sortCondition);
+	}
+	
+	
 	$("#searchAll").on("click", (function(e){
 		sortCondition.page=1
 		sortCondition.c="staff_no desc"
@@ -382,7 +391,7 @@ search(sortCondition);
 	}))
 			
 	$("#reset").on("click", function(e){
-			self.location="staff_search_form";
+			self.location="staff_search_form?redirect=0";
 	})
 
 	
@@ -409,6 +418,7 @@ search(sortCondition);
 	  element.checked=true;
 	  
 	}
+
 	
 
 	$("#search").on("click",function(pageNum){

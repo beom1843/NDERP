@@ -94,7 +94,7 @@ $(document).ready(function(){
 					alert(result+": 등록되었습니다!")
 //					opener.parent.location.reload();
 //					opener.parent.location='http://localhost:8081/staff_search_form';
-					window.opener.document.location.href = window.opener.document.URL;
+					window.opener.document.location.href = "http://localhost:8081/staff_search_form?redirect=1";
 					window.open("about:blank","_self").close();
 
 				});

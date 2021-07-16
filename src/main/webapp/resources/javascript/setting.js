@@ -14,7 +14,7 @@
 					console.log("inside deptlist");
 					var str = "";
 				if(deptList == null || deptList.length ==0){ }
-				str += "<select id='dept_code' name='dept_code'>";
+				str += "<select id='dept_code' name='dept_code' class='criteria'>";
 				str += "<option value='' selected disabled hidden></option>"
 				for(var i=0, len=deptList.length||0;i<len;i++){
 					str += "<option value='"+deptList[i].department_code+"'>"+deptList[i].department_name+"</option>";
@@ -28,7 +28,7 @@
 					var str = "";
 					if(schoolList == null || schoolList.length ==0){ }
 					for(var i=0, len=schoolList.length||0;i<len;i++){
-					str +="<input type='checkbox' id='education' name='education' onclick ='checkOnlyOne(this)' value='"+schoolList[i].school_code+"' />";
+					str +="<input type='checkbox' id='education' name='education' onclick ='checkOnlyOne(this)' class='criteria' value='"+schoolList[i].school_code+"' />";
 					str += schoolList[i].school_name;
 					}
 					EduRadio.html(str);
@@ -42,7 +42,7 @@
 						var str1="";
 						if(skillList == null || skillList.length ==0){ }
 						for(var i=0, len=5||0;i<len;i++){
-						str +="<input type='checkbox' id='skillList' name='skillList' value='"+skillList[i].skill_code+"' />";
+						str +="<input type='checkbox' id='skillList' name='skillList' class='criteria' value='"+skillList[i].skill_code+"' />";
 						str += skillList[i].skill_name;
 						}
 						SkillChk.html(str);

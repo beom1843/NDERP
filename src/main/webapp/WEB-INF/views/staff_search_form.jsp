@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,9 +21,7 @@
 
 </head>
 <body>
-	<input type="hidden" id="pageNum" value="<c:out value ='${pageNum}'/>">
-	<input type="hidden" id="amount" value="<c:out value ='${amount}'/>">
-	<input type="hidden" id="condition" value="<c:out value ='${condition}'/>">
+	<input type="hidden" id="redirect" value="<c:out value ='${redirect}'/>">
 	
 
 
@@ -33,11 +32,11 @@
 
 		<tr>
 			<th>이름</th>
-			<td><input type="text" id="name" name="name"></td>
+			<td><input type="text" id="name" name="name" class="criteria"></td>
 			<th>성별</th>
 			<td>
-			<input type='checkbox' id='sex' name='sex'  value="M">남
-			<input type='checkbox' id='sex' name='sex'  value="F">여
+			<input type='checkbox' id='sex' name='sex'  value="M" class="criteria">남
+			<input type='checkbox' id='sex' name='sex'  value="F" class="criteria">여
 			</td>
 			<th>부서</th>
 			<td>
@@ -82,8 +81,8 @@
 			<td colspan="5">
 						<div class="hidden_skill"></div>
 				<input type="text" id="addSkill" name="addSkill">
-				<input type="checkbox" value="and" name="add_method" onclick="checkOnlyOneM(this)"/>AND
-				<input type="checkbox" value="or" name="add_method" onclick="checkOnlyOneM(this)"/>OR
+				<input type="checkbox" value="and" name="add_method" onclick="checkOnlyOneM(this)" class="criteria"/>AND
+				<input type="checkbox" value="or" name="add_method" onclick="checkOnlyOneM(this)" class="criteria"/>OR
 			</td>
 		</tr>
 	</table>

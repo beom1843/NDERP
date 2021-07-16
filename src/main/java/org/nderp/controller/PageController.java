@@ -27,10 +27,15 @@ public class PageController {
 	}
 	
 	@GetMapping("/staff_search_form")
-	public void search(){
+	public void search(int redirect, Model model){
+		model.addAttribute("redirect",redirect);
 		
 	}
-
+	
+//	@GetMapping("/staff_search_form")
+//	public void search(){
+//		
+//	}
 	
 	@GetMapping("/staff_updel_form")
 	public void updel(int staff_no, Model model){
