@@ -73,7 +73,7 @@ window.sortCount=function(element){
 		m++;
 		counts[3]=m
 		
-		c=value;
+		c="department_code";
 		break;
 		
 	case "graduate_day":
@@ -185,19 +185,7 @@ search(sortCondition);
 				s_List += $(this).val();
 			})
 			
-			//addMethod의 값이 or이라면 skillList에 추가, and라면 Criteria의 add 변수에 담기
-			var add="";
-			var isAdd="N";
-			var isSkill = "P";
-			var addMethod=$("input[name='add_method']:checked").val();
-			if(addMethod=="or"){
-				isSkill="Y";
-				isAdd="O";
-				s_List += addSkillCode;
-			}else if(addMethod=="and"){
-				add=addSkillCode;
-				isAdd="A";
-			}
+
 
 			var y = document.getElementById("year1");
 			var grad_y1 = y.options[y.selectedIndex].text*1; 
@@ -245,6 +233,18 @@ search(sortCondition);
 			
 			var type = "";
 
+			//addMethod의 값이 and라면 type에 A 추가, addMethod의 값이 or이라면 isAdd=Y
+			var add="";
+			var isAdd="N";
+			var addMethod=$("input[name='add_method']:checked").val();
+			if(addMethod=="or"){
+				add=addSkillCode;
+				isAdd="Y";
+			}else if(addMethod=="and"){
+				add=addSkillCode;
+				type+="A";
+			}
+			
 			if(name){
 				type +="N";
 			}
@@ -258,7 +258,7 @@ search(sortCondition);
 				type +="D"
 			}
 			if(!s_List.length==0){
-				isSkill="Y"
+				type +="K"
 			}// 검색조건 입력
 			if(g_OK1&&g_OK2&&g1<g2){
 				type +="G"
@@ -270,7 +270,6 @@ search(sortCondition);
 			console.log("addSkillCode========="+addSkillCode);
 			console.log("skillList"+s_List)
 			console.log("pageNum=========="+page);
-			console.log("isSkill------------"+isSkill);
 			console.log("isAdd-------------"+isAdd);
 			console.log("Condition--------------"+condition)
 			
@@ -283,7 +282,6 @@ search(sortCondition);
 				dept:dpt_code,
 				edu:school_List,
 				skill:s_List,
-				isSkill:isSkill,
 				year1:grad_y1,
 				month1:grad_m1,
 				day1:grad_d1,
@@ -322,7 +320,6 @@ search(sortCondition);
 				dept:dpt_code,
 				edu:school_List,
 				skill:s_List,
-				isSkill:isSkill,
 				year1:grad_y1,
 				month1:grad_m1,
 				day1:grad_d1,
@@ -383,7 +380,8 @@ search(sortCondition);
 	
 	$("#searchAll").on("click", (function(e){
 		sortCondition.page=1
-		
+		sortCondition.c="staff_no desc"
+			sortCondition.m=null;
 		search(sortCondition);
 	}))
 			

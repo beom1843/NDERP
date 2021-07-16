@@ -12,6 +12,7 @@ public class Criteria {
 	private int pageNum;
 	private int amount;
 	
+	//이름 N, 성별 J, 부서 D, 학력 S, 졸업일 G, 기술 K, 추가 기술 A and 조건으로 검색 
 	private String type;
 	
 	private String keyword;
@@ -20,12 +21,10 @@ public class Criteria {
 	private String edu;
 	private String skill;
 	
-	//Y일 때 기술스택을 검색함
-	private String isSkill;
 	
-	//A일 때 추가기술을 AND조건으로 검색함
+	//Y일 때 추가기술 or 조건으로 검색
 	private String isAdd;
-	//and 조건일 경우 추가기술 코드를 받아옴
+	//추가기술을 받아옴
 	private String add;
 	
 	private String year1;
@@ -41,7 +40,6 @@ public class Criteria {
 	
 	public Criteria(){
 		this(1,5);
-		this.isSkill="P";
 	}
 	
 	public Criteria(int pageNum, int amount){
@@ -61,20 +59,10 @@ public class Criteria {
 		return skill == null? new String[] {}: skill.split("");
 	}
 	
-	public String[] getIsSkillArr(){
-		return isSkill == null? new String[] {}: isSkill.split("");
-	}
-	
 	public String[] getSexArr(){
 		return sex == null? new String[] {}: sex.split("");
 	}
 	
-	public String[] getIsAddArr(){
-		return isAdd == null? new String[] {}: isAdd.split("");
-	}
-	public String[] getAddArr(){
-		return add ==null? new String[] {} : add.split("");
-	}
 	
 
 }

@@ -127,6 +127,29 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 	@Override
 	public int getTotal(Criteria cri) {
 		
+		if (cri.getSex()=="M"){
+			cri.setSex("13");
+		}else if(cri.getSex()=="F"){
+			cri.setSex("24");
+		}else if(cri.getSex()=="MF"||cri.getSex()=="FM"){
+			cri.setSex("1234");
+		}
+		
+		if(cri.getMethod()==null){
+			cri.setMethod("");
+		}
+		else if(cri.getMethod().equals("1")){
+			cri.setMethod("asc");
+		}else if(cri.getMethod().equals("0")){
+			cri.setMethod("desc");
+		}
+		
+		if(cri.getCondition()=="sex"){
+			cri.setCondition("decode(sex,'1','1','3','2','2','3','4','4')");
+			cri.setMethod("");
+		}
+		log.info("서비스----------------"+cri);
+		
 		if(staffMapper.getTotal(cri)==0){
 			return 0;
 		}else{

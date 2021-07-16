@@ -74,7 +74,6 @@ public class ServiceTests {
 		cri.setAmount(18);
 		cri.setSkill("1");
 		cri.setAdd("9");
-		cri.setIsSkill("Y");
 		cri.setIsAdd("A");
 		cri.setCondition("rownum");
 		cri.setMethod("");

@@ -76,14 +76,14 @@ public class MapperTests {
 	@Test
 	public void testPaging(){
 		Criteria cri = new Criteria();
-		//5개씩 3페이지, 추가기술 9를 and 조건으로 검색 , 성별로 정렬
+		//최대 18건의 검색결과로 
 		cri.setPageNum(1);
 		cri.setAmount(18);
-		cri.setSkill("9");
-		//cri.setAdd("9");
-		cri.setIsSkill("Y");
-		cri.setIsAdd("O");
-		cri.setCondition("sex");
+		cri.setType("J");
+		cri.setSex("13");
+		cri.setDept(3);
+		cri.setAdd("9");
+		cri.setCondition("rownum");//성별 정렬 기준 필요
 		cri.setMethod("");
 		List<ResultDAO> list = staffMapper.getListWithPaging(cri);
 		list.forEach(staff -> log.info(staff));

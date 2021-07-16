@@ -108,7 +108,6 @@ public class StaffInfoController {
 		
 		Criteria cri = new Criteria();
 		cri.setAmount(5);
-		cri.setIsSkill("P");
 		cri.setPageNum(pageNum);
 		
 		return new ResponseEntity<List<ResultDAO>>(service.listStaff(cri),HttpStatus.OK);
