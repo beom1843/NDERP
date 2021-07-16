@@ -96,7 +96,7 @@
 		}//setDateBox 끝
 		
 	window.checkOnlyOne=function(element){
-		if(!(window.location.href=="http://localhost:8081/staff_search_form")){
+		if(!((window.location.href=="http://localhost:8081/staff_search_form?redirect=0")||(window.location.href=="http://localhost:8081/staff_search_form?redirect=1"))){
 			const checkboxes 
 		      = document.getElementsByName("education");
 
