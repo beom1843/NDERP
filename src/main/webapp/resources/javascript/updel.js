@@ -47,6 +47,8 @@ $(document).ready(function(){
 	
 	$("#update").on("click", (function(e){
 		e.preventDefault();
+		if(confirm("정말 수정하시겠습니까?")){
+		
 		var name= $("input[name='name']").val();
 		var j1= $("input[name='jumin_1']").val();
 		var j2= $("input[name='jumin_2']").val();
@@ -75,20 +77,24 @@ $(document).ready(function(){
 			s_List.push($(this).val());
 		})
 		
-		staffInfoService.update({
-			staff_no:s_no,
-			staff_name:name,
-			jumin_no:j,
-			school_code:sch_code,
-			department_code:dpt_code,
-			graduate_day:g_day,
-			skill_list:s_List
-		},
-		function(result){
-			alert(result+": 수정되었습니다!")
-			window.opener.document.location.href = "http://localhost:8081/staff_search_form?redirect=1";
-			window.open("about:blank","_self").close();
-		});
+			
+			staffInfoService.update({
+				staff_no:s_no,
+				staff_name:name,
+				jumin_no:j,
+				school_code:sch_code,
+				department_code:dpt_code,
+				graduate_day:g_day,
+				skill_list:s_List
+			},
+			function(result){
+				alert(result+": 수정되었습니다!")
+				window.opener.document.location.href = "http://localhost:8081/staff_search_form?redirect=1";
+				window.open("about:blank","_self").close();
+			});
+	}
+		
+
 	}))// update 버튼 클릭 이벤트
 	
 	$("#delete").on("click", (function(e){
@@ -102,12 +108,7 @@ $(document).ready(function(){
 			},
 			function(result){
 				alert(result+":삭제되었습니다!")
-//				opener.parent.location.reload();
-//				opener.parent.location='http://localhost:8081/staff_search_form';
-//				opener.document.location.href="http://localhost:8081/staff_search_form"
 				window.opener.document.location.href = "http://localhost:8081/staff_search_form?redirect=1";
-//				opener.loaction.reload();
-//				opener.location.replace("staff_search_form")
 				window.open("about:blank","_self").close();
 
 			})

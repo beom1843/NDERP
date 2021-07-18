@@ -8,6 +8,7 @@ $(document).ready(function(){
 		
 		$("#submit").on("click",(function(e){
 			e.preventDefault();
+
 			var name= $("input[name='name']").val();
 			
 			var j1= $("input[name='jumin_1']").val();
@@ -82,6 +83,10 @@ $(document).ready(function(){
 			if(isAllOK !==0){
 				alert(message);
 			}else{
+				
+				
+
+				
 				staffInfoService.add({
 					staff_name:name,
 					jumin_no:j,
@@ -92,14 +97,11 @@ $(document).ready(function(){
 				},
 				function(result){
 					alert(result+": 등록되었습니다!")
-//					opener.parent.location.reload();
-//					opener.parent.location='http://localhost:8081/staff_search_form';
 					window.opener.document.location.href = "http://localhost:8081/staff_search_form?redirect=1";
 					window.open("about:blank","_self").close();
 
 				});
 			}
-			
 		}));
 		
 		
