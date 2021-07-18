@@ -46,19 +46,19 @@
 						str += skillList[i].skill_name;
 						}
 						SkillChk.html(str);
-						if(!(window.location.href=="http://localhost:8081/staff_search_form")){
-						for(var i=5,len=skillList.length;i<len;i++){
+						if((window.location.href=="http://localhost:8081/staff_search_form?redirect=0")||(window.location.href=="http://localhost:8081/staff_search_form?redirect=1"))
+						{for(var i=5,len=skillList.length;i<len;i++){
+							str1 +="<input type='hidden' name='skillList2' value='"+skillList[i].skill_code+"-"+skillList[i].skill_name+"' />";
+							}
+							SkillHidden.html(str1);
+							}
+						else{for(var i=5,len=skillList.length;i<len;i++){
 							console.log("inside js Module--------"+skillList[i].skill_name)
-						str1 +="<input type='checkbox' id='skillList' name='skillList' value='"+skillList[i].skill_code+"' />";
-						str1 += skillList[i].skill_name;
-						}
-						SkillAdd.html(str1);
-						}else{
-						for(var i=5,len=skillList.length;i<len;i++){
-						str1 +="<input type='hidden' name='skillList2' value='"+skillList[i].skill_code+"-"+skillList[i].skill_name+"' />";
-						}
-						SkillHidden.html(str1);
-						}
+							str1 +="<input type='checkbox' id='skillList' name='skillList' value='"+skillList[i].skill_code+"' />";
+							str1 += skillList[i].skill_name;
+							}
+							SkillAdd.html(str1);
+							}
 					})
 			
 		}//getCode, 코드불러오기 끝

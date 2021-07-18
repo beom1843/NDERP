@@ -114,7 +114,6 @@ search(sortCondition);
 	
 	function search(sortCondition){
 		
-			
 			if(sortCondition){
 				if(sortCondition.c==""){
 					condition="rownum";
@@ -182,7 +181,8 @@ search(sortCondition);
 					addSkillCode=strSkill[0];
 				}
 			}
-			
+			console.log(addSkill);
+			console.log(addSkillCode)
 
 			
 			
@@ -207,7 +207,12 @@ search(sortCondition);
 			d = document.getElementById("day2");
 			var grad_d2 = d.options[d.selectedIndex].text;
 			
-
+			
+			var date1= new Date(grad_y1+"-"+grad_m1+"-"+grad_d1)
+			var date2= new Date(grad_y2+"-"+grad_m2+"-"+grad_d2)
+			
+			
+			
 			if(grad_d1.length===1){
 				var d_=grad_d1
 				grad_d1="0"+d_;
@@ -235,7 +240,7 @@ search(sortCondition);
 			var g1 = new Date(g_day1);
 			var g2 = new Date(g_day2);
 			
-			
+						
 			var type = "";
 
 			//addMethod의 값이 and라면 type에 A 추가, addMethod의 값이 or이라면 isAdd=Y
@@ -268,109 +273,114 @@ search(sortCondition);
 			if(g_OK1&&g_OK2&&g1<g2){
 				type +="G"
 			}
-			
-			
-			staffInfoService.getPage({
-				pageNum:page,
-				amount:5,
-				type:type,
-				keyword:name,
-				sex:sex,
-				dept:dpt_code,
-				edu:school_List,
-				skill:s_List,
-				year1:grad_y1,
-				month1:grad_m1,
-				day1:grad_d1,
-				year2:grad_y2,
-				month2:grad_m2,
-				day2:grad_d2,
-				isAdd:isAdd,
-				add:add,
-				condition:condition,
-				method:method},
-			function(pageMaker){
-				if(pageMaker.prev){
-					str1+="<li class='paginate_button previous' onclick ='movePage("+(pageMaker.startPage-1)+")' >이전</a></li>"
-				}
-				for(var i = pageMaker.startPage; i<pageMaker.endPage+1;i++ ){
-					if(i==page){
-					str1+="<li class='paginate_button' onclick ='movePage("+i+")'>["+i+"]</a></li>";
-				}else{
-						str1+="<li class='paginate_button' onclick ='movePage("+i+")'>"+i+"</a></li>";
+			if(date1>date2){
+				alert("**정확한 졸업날짜 구간을 입력하세요**")
+			}else{
+				staffInfoService.getPage({
+					pageNum:page,
+					amount:5,
+					type:type,
+					keyword:name,
+					sex:sex,
+					dept:dpt_code,
+					edu:school_List,
+					skill:s_List,
+					year1:grad_y1,
+					month1:grad_m1,
+					day1:grad_d1,
+					year2:grad_y2,
+					month2:grad_m2,
+					day2:grad_d2,
+					isAdd:isAdd,
+					add:add,
+					condition:condition,
+					method:method},
+				function(pageMaker){
+					if(pageMaker.prev){
+						str1+="<li class='paginate_button previous' onclick ='movePage("+(pageMaker.startPage-1)+")' >이전</a></li>"
 					}
-				}
-				if(pageMaker.next){
-					str1+="<li class='paginate_button next' onclick ='movePage("+((pageMaker.endPage*1)+1)+")'>다음</a></li>"
-				}
-				pagination.html(str1);
-				total.html("총 "+pageMaker.total+"건");
-				
-			})
-			
-			staffInfoService.search({
-				pageNum:page,
-				amount:5,
-				type:type,
-				keyword:name,
-				sex:sex,
-				dept:dpt_code,
-				edu:school_List,
-				skill:s_List,
-				year1:grad_y1,
-				month1:grad_m1,
-				day1:grad_d1,
-				year2:grad_y2,
-				month2:grad_m2,
-				day2:grad_d2,
-				isAdd:isAdd,
-				add:add,
-				condition:condition,
-				method:method},
-			function(list){
-				if(list == null || list.length ==0){ }
-				str+='<input type="hidden" id="m1" name="m1" value="rownum"/>'
-				str+='<input type="hidden" id="m2" name="m2" value="staff_name"/>'
-				str+='<input type="hidden" id="m3" name="m3" value="sex"/>'
-				str+='<input type="hidden" id="m4" name="m4" value="department_name"/>'
-				str+='<input type="hidden" id="m5" name="m5" value="graduate_day"/>'
+					for(var i = pageMaker.startPage; i<pageMaker.endPage+1;i++ ){
+						if(i==page){
+						str1+="<li class='paginate_button' onclick ='movePage("+i+")'>["+i+"]</a></li>";
+					}else{
+							str1+="<li class='paginate_button' onclick ='movePage("+i+")'>"+i+"</a></li>";
+						}
+					}
+					if(pageMaker.next){
+						str1+="<li class='paginate_button next' onclick ='movePage("+((pageMaker.endPage*1)+1)+")'>다음</a></li>"
+					}
+					pagination.html(str1);
+					total.html("총 "+pageMaker.total+"건");
 					
-				str+="<table style='width: 80%'>";
-				
-				str+="<tr><th>번호"+'<div name="sort1" onclick="sortCount(m1)" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter"  viewBox="0 0 16 16" >'+
-				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
-				  '</svg></div>'+"</th>";
-				str+="<th>이름"+'<div name="sort2" onclick="sortCount(m2)" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16" >'+
-				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
-					  '</svg></div>'+"</th>";
-				str+="<th>성별"+'<div name="sort3" onclick="sortCount(m3)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
-				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
-				  '</svg></div>'+"</th>";
-				str+="<th>부서"+'<div name="sort4" onclick="sortCount(m4)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
-				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
-				  '</svg></div>'+"</th>";
-				str+="<th>졸업일"+'<div name="sort5" onclick="sortCount(m5)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
-				  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
-				  '</svg></div>'+"</th>";
-				str+="<th>  </th></tr>";
-				
-				for(var i=0, len=list.length||0;i<len;i++){	
-				str+="<tr>";
-				str+="<td>"+list[i].rn+"</td>";
-				str+="<td>"+list[i].staff_name+"</td>";
-				if(list[i].sex==1|list[i].sex==3){
-					str+="<td>"+"남"+"</td>";	
-				}else{
-					str+="<td>"+"여"+"</td>";
-				}
-				
-				str+="<td>"+list[i].department_name+"</td>";
-				str+="<td>"+list[i].graduate_day+"</td>";
-				str+="<td><button id='upDel' value='"+list[i].staff_no+"' onclick = upDelLink("+list[i].staff_no+") >수정/삭제</button>";
-				str+="</tr>"
-				}
-				result.html(str);
 				})
+				
+				staffInfoService.search({
+					pageNum:page,
+					amount:5,
+					type:type,
+					keyword:name,
+					sex:sex,
+					dept:dpt_code,
+					edu:school_List,
+					skill:s_List,
+					year1:grad_y1,
+					month1:grad_m1,
+					day1:grad_d1,
+					year2:grad_y2,
+					month2:grad_m2,
+					day2:grad_d2,
+					isAdd:isAdd,
+					add:add,
+					condition:condition,
+					method:method},
+				function(list){
+					if(list == null || list.length ==0){ }
+					str+='<input type="hidden" id="m1" name="m1" value="rownum"/>'
+					str+='<input type="hidden" id="m2" name="m2" value="staff_name"/>'
+					str+='<input type="hidden" id="m3" name="m3" value="sex"/>'
+					str+='<input type="hidden" id="m4" name="m4" value="department_name"/>'
+					str+='<input type="hidden" id="m5" name="m5" value="graduate_day"/>'
+						
+					str+="<table style='width: 80%'>";
+					
+					str+="<tr><th>번호"+'<div name="sort1" onclick="sortCount(m1)" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter"  viewBox="0 0 16 16" >'+
+					  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
+					  '</svg></div>'+"</th>";
+					str+="<th>이름"+'<div name="sort2" onclick="sortCount(m2)" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16" >'+
+					  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
+						  '</svg></div>'+"</th>";
+					str+="<th>성별"+'<div name="sort3" onclick="sortCount(m3)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
+					  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
+					  '</svg></div>'+"</th>";
+					str+="<th>부서"+'<div name="sort4" onclick="sortCount(m4)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
+					  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
+					  '</svg></div>'+"</th>";
+					str+="<th>졸업일"+'<div name="sort5" onclick="sortCount(m5)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">'+
+					  '<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>'+
+					  '</svg></div>'+"</th>";
+					str+="<th>  </th></tr>";
+					
+					for(var i=0, len=list.length||0;i<len;i++){	
+					str+="<tr>";
+					str+="<td>"+list[i].rn+"</td>";
+					str+="<td>"+list[i].staff_name+"</td>";
+					if(list[i].sex==1|list[i].sex==3){
+						str+="<td>"+"남"+"</td>";	
+					}else{
+						str+="<td>"+"여"+"</td>";
+					}
+					
+					str+="<td>"+list[i].department_name+"</td>";
+					str+="<td>"+list[i].graduate_day+"</td>";
+					str+="<td><button id='upDel' value='"+list[i].staff_no+"' onclick = upDelLink("+list[i].staff_no+") >수정/삭제</button>";
+					str+="</tr>"
+					}
+					result.html(str);
+					})
+			}
+			
+			
+			
 		
 	}
 	
@@ -384,10 +394,18 @@ search(sortCondition);
 	
 	
 	$("#searchAll").on("click", (function(e){
-		self.location="staff_search_form?redirect=0";
+		$(".criteria").val('');
+		$(".criteria").prop('checked',false);
+		$(".criteria").prop('selected',false);
+		
+		$(".year").prop('selected', false);
+		$(".month").prop('selected',false);
+		$(".day").prop('selected',false);
 		sortCondition.page=1
+		console.log("SearchAll")
 		sortCondition.c="staff_no desc"
 			sortCondition.m=null;
+		
 		search(sortCondition);
 	}))
 			
@@ -395,7 +413,7 @@ search(sortCondition);
 			self.location="staff_search_form?redirect=0";
 	})
 
-	
+		
 	window.upDelLink= function(staff_no){
 
 		var url="staff_updel_form?staff_no="+staff_no;

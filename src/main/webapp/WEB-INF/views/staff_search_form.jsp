@@ -25,7 +25,7 @@
 	
 
 
-	<table style="width: 100%">
+	<table style="width: 100%" class="search_table">
 		<tr>
 			<th colspan="6">사원 정보 검색</th>
 		</tr>
@@ -80,9 +80,10 @@
 			<th>추가 기술</th>
 			<td colspan="5">
 						<div class="hidden_skill"></div>
-				<input type="text" id="addSkill" name="addSkill">
+				<input type="text" id="addSkill" name="addSkill" class="criteria">
 				<input type="checkbox" value="and" name="add_method" onclick="checkOnlyOneM(this)" class="criteria"/>AND
 				<input type="checkbox" value="or" name="add_method" onclick="checkOnlyOneM(this)" class="criteria"/>OR
+				<div id ="message_add">  - eGovFrame, Nexacro, Spring, Vue.js의 추가기술을 검색할 수 있습니다.</div>
 			</td>
 		</tr>
 	</table>

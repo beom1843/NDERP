@@ -14,9 +14,22 @@ div > table{
 	margin-right:auto;
 }
 
+.result{
+	margin: 10px;
+}
+
+.search_table{
+	margin-bottom:10px;
+}
+
+
 .pagination{
 	text-align:center;
 	margin-left:auto;
 	margin-right:auto;
 	display:inline-block;
+}
+
+#message_add{
+	font-size:12px;
 }
