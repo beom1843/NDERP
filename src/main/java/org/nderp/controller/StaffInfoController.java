@@ -124,7 +124,6 @@ public class StaffInfoController {
 	
 		cri.setPageNum(pageNum);
 		int size = service.getTotal(cri);
-		log.info(size);
 		PageDTO pageMaker = new PageDTO(cri,size);
 		
 		return new ResponseEntity<PageDTO>(pageMaker,HttpStatus.OK);
@@ -137,7 +136,6 @@ public class StaffInfoController {
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<ResultDAO>> searchStaff(@RequestBody Criteria cri){
 		List<ResultDAO> list = service.listStaff(cri);
-		log.info("search 결과"+list);
 		return new ResponseEntity<List<ResultDAO>>(list,HttpStatus.OK);
 	}
 	
@@ -148,9 +146,7 @@ public class StaffInfoController {
 	public ResponseEntity<PageDTO> getPage(@RequestBody Criteria cri){
 		cri.setAmount(5);
 		
-		log.info("skill---------------"+cri.getSkill());
 		int size = service.getTotal(cri);
-		log.info(size);
 		PageDTO pageMaker = new PageDTO(cri,size);
 		
 		return new ResponseEntity<PageDTO>(pageMaker,HttpStatus.OK);

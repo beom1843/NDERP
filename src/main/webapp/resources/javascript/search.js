@@ -401,11 +401,9 @@ search(sortCondition);
 		$(".year").prop('selected', false);
 		$(".month").prop('selected',false);
 		$(".day").prop('selected',false);
-		sortCondition.page=1
-		console.log("SearchAll")
 		sortCondition.c="staff_no desc"
+		sortCondition.page=1
 			sortCondition.m=null;
-		
 		search(sortCondition);
 	}))
 			

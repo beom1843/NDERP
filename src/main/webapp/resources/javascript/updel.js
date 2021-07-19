@@ -1,9 +1,7 @@
 $(document).ready(function(){
 	
-	console.log("후레자"+ window.opener.document.URL)
 	
 	var s_no = $("#staff_no").val();
-	console.log(s_no);
 	
 	//Staff 가져오기
 	

@@ -119,7 +119,6 @@ public class StaffInfoServiceImpl implements StaffInfoService {
 			cri.setCondition("decode(sex,'1','1','3','2','2','3','4','4')");
 			cri.setMethod("");
 		}
-		log.info("서비스----------------"+cri);
 		
 		return staffMapper.getListWithPaging(cri);
 	}

@@ -32,11 +32,6 @@ public class PageController {
 		
 	}
 	
-//	@GetMapping("/staff_search_form")
-//	public void search(){
-//		
-//	}
-	
 	@GetMapping("/staff_updel_form")
 	public void updel(int staff_no, Model model){
 		model.addAttribute("staff_no",staff_no);

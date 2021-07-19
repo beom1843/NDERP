@@ -144,10 +144,6 @@
 					or skill_code like '%'||#{add}||'%' 
 					</if>
 
-
-
-
-		
 			<![CDATA[ 
 				) d
 				where 

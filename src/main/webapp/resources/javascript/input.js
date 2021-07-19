@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-	 console.log("이놈아1!"+window.opener.document.URL)
 	
 		$("#reset").on("click", function(e){
 			self.location="staff_input_form";
@@ -40,11 +39,6 @@ $(document).ready(function(){
 			
 			//alert 메시지 만들기
 			var message ="";
-			console.log(j);
-			console.log(g_day);
-			console.log("S"+sch_code);
-			console.log("D"+dpt_code);
-			console.log("SK"+s_List.length);
 			var j_OK= (/\d{6}\-[1-4]\d{6}/g).test(j);
 			var isAllOK =0;
 			
