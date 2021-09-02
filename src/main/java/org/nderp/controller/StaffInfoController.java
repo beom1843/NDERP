@@ -84,9 +84,9 @@ public class StaffInfoController {
 			produces = { MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> delete(@PathVariable("staff_no")int staff_no){
 		
-		return service.deleteStaff(staff_no)==1
-				? new ResponseEntity<>("success",HttpStatus.OK)
-				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		return "".equals(service.deleteStaff(staff_no))
+					? new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR)
+					: new ResponseEntity<>("success",HttpStatus.OK);
 	}
 	
 	@RequestMapping(method={RequestMethod.PUT, RequestMethod.PATCH},
